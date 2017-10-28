@@ -106,14 +106,18 @@
         }
 
         function Rel_instituicao() {
-            var v1 = document.getElementById('input_Inst').value;
-            var v_url = "Funcionarios_Relatorios_PDF_2.aspx?p1=" + v1;
-            window.open(v_url, '_blank');
+
+            var v2 = document.getElementById("input_Inst");
+            var v2_1 = v2.options[v2.selectedIndex].value; //instituicao_ID
+            var v2_2 = v2.options[v2.selectedIndex].text; //instituicao_nome
+
+             var v_url = "Funcionarios_Relatorios_PDF_inst.aspx?p1=" + v2_1 + "&p2=" + v2_2;
+             window.open(v_url, '_blank');
         }
 
         function Rel_Etnia() {
             var v1 = document.getElementById('input_etnia').value;
-            var v_url = "Funcionarios_Relatorios_PDF_3.aspx?p1=" + v1;
+            var v_url = "Funcionarios_Relatorios_PDF_etnia.aspx?p1=" + v1;
             window.open(v_url, '_blank');
         }
 

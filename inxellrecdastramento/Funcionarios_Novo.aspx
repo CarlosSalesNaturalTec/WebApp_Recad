@@ -560,7 +560,12 @@
                         <div class="form-group">
                             <label for="input_BenefSituac" class="col-md-2 control-label">Situação</label>
                             <div class="col-md-3">
-                                <input type="text" id="input_BenefSituac" class="w3-input w3-border w3-round">
+                                <select class="w3-select w3-border w3-round" id="input_BenefSituac">
+                                    <option>Ativo</option>
+                                    <option>Inativo</option>
+                                    <option>Suspenso</option>
+                                    <option>Cancelado</option>
+                                </select>
                             </div>
                             <label for="input_BenefInicio" class="col-md-2 control-label">Inicio</label>
                             <div class="col-md-3">
@@ -766,39 +771,6 @@
             <div class="w3-threequarter">
                 <form class="form-horizontal">
                     <fieldset>
-                        <div class="form-group">
-                            <label for="input_Entrada" class="col-md-2 control-label">Instituição</label>
-                            <div class="col-md-8">
-                                <input type="text" id="input_Entrada" class="w3-input w3-border w3-round">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="input_CargaHor" class="col-md-2 control-label">Carga Horária</label>
-                            <div class="col-md-3">
-                                <select class="w3-select w3-border w3-round" id="input_CargaHor">
-                                    <option value="20Hs">20Hs</option>
-                                    <option value="30Hs - Turnão">30Hs - Turnão</option>
-                                    <option value="40Hs">40Hs</option>
-                                </select>
-                            </div>
-                            
-                             <div class="form-group">
-                                 <label for="input_admissao" class="col-md-2 control-label" ></label>
-                                 <div class="col-md-3">
-                                     <input type="date" id="input_admissao " class="w3-input w3-border w3-round"/>
-                                 </div>
-                               </div>
-
-                            <div class="col-md-2">
-                                <button type="button" class="w3-btn w3-border w3-round w3-light-green w3-hover-green"
-                                    onclick="alert('Necessário Salvar Funcionário primeiro!')">
-                                    <i class="fa fa-plus"></i>&nbsp;Adicionar</button>
-                            </div>
-                        </div>
-
-                       
-
                         <!-- GRID Carga Horária- -->
                         <div class="form-group">
                             <div class="col-md-2"></div>
@@ -833,7 +805,7 @@
                             <button class="w3-btn w3-round w3-border w3-light-green w3-hover-green btcontroles" onclick="classeBt8()">
                                 <i class="fa fa-forward" aria-hidden="true"></i>&nbsp;Avançar</button>
 
-                            <button class="w3-btn w3-round w3-border w3-light-green w3-hover-green btcontroles" onclick="AlterarRegistro()">
+                            <button class="w3-btn w3-round w3-border w3-light-green w3-hover-green btcontroles" onclick="SalvarRegistro()">
                                 <i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;Finalizar</button>
 
                             <i style="display: none" class="aguarde fa-2x fa fa-cog fa-spin fa-fw w3-text-green w3-right"></i>

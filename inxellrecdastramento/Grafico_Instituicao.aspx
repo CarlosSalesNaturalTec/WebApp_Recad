@@ -31,7 +31,7 @@
         <div id="Bloco1" class="w3-col s12 m8 18 w3-padding">
             <div class="panel panel-success">
                 <div class="panel-heading text-center">
-                    <h4 class="panel-title w3-small">Evolução Recadastramento</h4>
+                    <h4 class="panel-title w3-small">Insituições por Município</h4>
                 </div>
 
                 <div class="panel-body">

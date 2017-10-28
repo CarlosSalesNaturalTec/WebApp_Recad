@@ -23,7 +23,7 @@ public partial class Funcionarios_Relatorios : System.Web.UI.Page
 
         StringBuilder strInst = new StringBuilder();
         strInst.Clear();
-        strInst.Append("<option value=\"Todas\">Todas</option>");
+        strInst.Append("<option value=\"0\">Todas</option>");
 
         string strSelect = "select ID_inst, nome from Tbl_Instituicao " +
                             "where ID_Munic = " + idMunic + " " +

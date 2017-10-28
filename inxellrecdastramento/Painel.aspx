@@ -29,7 +29,7 @@
 
             <div class="w3-right">
                 <div class="w3-bar-block w3-card-4">
-                   <a href="Suporte.aspx" target="iframe" class="w3-bar-item w3-button w3-hover-green"><i class="fa fa-volume-control-phone" aria-hidden="true"></i>&nbsp;Suporte</a>
+                    <a href="Suporte.aspx" target="iframe" class="w3-bar-item w3-button w3-hover-green"><i class="fa fa-volume-control-phone" aria-hidden="true"></i>&nbsp;Suporte</a>
                 </div>
             </div>
 
@@ -41,26 +41,23 @@
                 </div>
             </div>
 
-             <div class="w3-dropdown-hover w3-right">
+            <div class="w3-dropdown-hover w3-right">
                 <button class="w3-btn w3-hover-green"><i class="fa fa-file"></i>&nbsp;Relatórios</button>
                 <div class="w3-dropdown-content w3-bar-block w3-card-4">
                     <a href="Funcionarios_Relatorios.aspx" target="iframe" class="w3-bar-item w3-button w3-hover-light-green">Funcionários</a>
                     <a href="Instituicao_Relatorio.aspx" target="iframe" class="w3-bar-item w3-button w3-hover-light-green">Instituições</a>
+
                 </div>
             </div>
 
-            <div class="w3-dropdown-hover w3-right">
-                <button class="w3-btn w3-hover-green"><i class="fa fa-users" aria-hidden="true"></i>&nbsp;RH</button>
-                <div class="w3-dropdown-content w3-bar-block w3-card-4">
-                    <a href="Funcionarios_Listagem.aspx" target="iframe" class="w3-bar-item w3-button w3-hover-light-green">Funcionários</a>                 
-                </div>
-            </div>
 
             <div class="w3-dropdown-hover w3-right">
                 <button class="w3-btn w3-hover-green"><i class="fa fa-university"></i>&nbsp;Cadastros</button>
                 <div class="w3-dropdown-content w3-bar-block w3-card-4">
                     <a href="CAD_Municipio_Listagem.aspx" target="iframe" class="w3-bar-item w3-button w3-hover-light-green">Municípios</a>
                     <a href="CAD_Instituicao_Listagem.aspx" target="iframe" class="w3-bar-item w3-button w3-hover-light-green">Instituições</a>
+                    <a href="Funcionarios_Listagem.aspx" target="iframe" class="w3-bar-item w3-button w3-hover-light-green">Funcionários</a>
+
                 </div>
             </div>
 
@@ -82,6 +79,7 @@
                 <h6 class="w3-small" style="margin-left: 14px"><a href="http://inxell.com.br/" target="_blank">
                     <img src="Images/logor_inxellsmall.png" class="w3-animate-fading" /></a>
                     &nbsp;&nbsp;&nbsp;<asp:Label ID="lblWelcome" CssClass="w3-text-green" runat="server"></asp:Label>&nbsp;&nbsp;
+                   
                     <i class="fa fa-user w3-small"></i>&nbsp;&nbsp;
                 </h6>
             </div>
@@ -104,6 +102,7 @@
                     <br />
                     <p>
                         <button type="button" class="w3-button w3-round w3-border w3-light-green w3-hover-green" onclick="sair_cancel()">Não</button>&nbsp;&nbsp;&nbsp;
+                       
                         <button type="button" class="w3-button w3-round w3-border w3-light-green w3-hover-red" onclick="sair_exit()">Sim</button>
                     </p>
                     <br />

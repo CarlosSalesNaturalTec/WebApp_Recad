@@ -4,12 +4,15 @@ using System.Text;
 public partial class Funcionarios_Ficha : System.Web.UI.Page
 {
     StringBuilder str = new StringBuilder();
-    string idAux,idMunic;
+    string idAux,idMunic,name;
     
 
     protected void Page_Load(object sender, EventArgs e)
     {
         idAux = Request.QueryString["v1"];
+        idMunic = Session["ID_Munic"].ToString();
+        
+
 
         PreencheCampos(idAux);
         DependentesLista(idAux);
@@ -18,10 +21,31 @@ public partial class Funcionarios_Ficha : System.Web.UI.Page
         Digitalizacoes(idAux);
         Gratificacoes(idAux);
         Formacoes(idAux);
+        PreencheInstituicoes(idMunic);
 
-        //lista de instituições
-        //string idauxmunic = Literal_Instituicoes.Text;
-        //Instituicoes(idauxmunic);
+    }
+
+    private void PreencheInstituicoes(string idMunic)
+    {
+
+        StringBuilder strInst = new StringBuilder();
+        strInst.Clear();
+        strInst.Append("<option value=\"0\">Selecione uma Instituição</option>");
+
+        string strSelect = "select ID_inst, nome from Tbl_Instituicao " +
+                            "where ID_Munic = " + idMunic + 
+                            " order by nome ";
+
+        OperacaoBanco operacao = new OperacaoBanco();
+        System.Data.SqlClient.SqlDataReader dados = operacao.Select(strSelect);
+
+        while (dados.Read())
+        {
+            strInst.Append("<option value=\"" + Convert.ToString(dados[0]) + "\">" + Convert.ToString(dados[1]) + "</option>");
+        }
+        ConexaoBancoSQL.fecharConexao();
+
+        Literal4.Text = strInst.ToString();
 
     }
 
@@ -241,7 +265,7 @@ public partial class Funcionarios_Ficha : System.Web.UI.Page
     private void CargaHLista(string ID)
     {
 
-        string stringSelect = "select ID_CargaH, Instituicao , Carga  " +
+        string stringSelect = "select ID_CargaH, Instituicao , Carga, format(inicio_atividades,'dd/MM/yyyy')  " +
             " from Tbl_Funcionarios_CargaHor " +
             " where ID_func = " + ID;
         OperacaoBanco operacaoUsers = new OperacaoBanco();
@@ -265,6 +289,10 @@ public partial class Funcionarios_Ficha : System.Web.UI.Page
 
             ScriptDados = "<td>" + Convert.ToString(rcrdsetUsers[2]) + "</td>";
             str.Append(ScriptDados);
+
+            ScriptDados = "<td>" + Convert.ToString(rcrdsetUsers[3]) + "</td>";
+            str.Append(ScriptDados);
+
 
             ScriptDados = "</tr>";
             str.Append(ScriptDados);

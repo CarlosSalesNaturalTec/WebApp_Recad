@@ -8,8 +8,8 @@ public partial class Suporte_Email : System.Web.UI.Page
 
         //Define os dados do e-mail
         string nomeRemetente = "Suporte";
-        string emailRemetente = "sergiosuarez@loglogistica.com.br";
-        string senha = "ss040470";
+        string emailRemetente = "";
+        string senha = "";
 
         //Host da porta SMTP
         string SMTP = "smtp.terra.com.br";

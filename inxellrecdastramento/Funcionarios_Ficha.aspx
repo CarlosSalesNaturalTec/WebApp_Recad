@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Funcionarios_Ficha.aspx.cs" Inherits="Funcionarios_Ficha" %>
+﻿f<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Funcionarios_Ficha.aspx.cs" Inherits="Funcionarios_Ficha" %>
 
 <!DOCTYPE html>
 
@@ -560,7 +560,12 @@
                         <div class="form-group">
                             <label for="input_BenefSituac" class="col-md-2 control-label">Situação</label>
                             <div class="col-md-3">
-                                <input type="text" id="input_BenefSituac" class="w3-input w3-border w3-round">
+                                <select class="w3-select w3-border w3-round" id="input_BenefSituac">
+                                    <option>Ativo</option>
+                                    <option>Inativo</option>
+                                    <option>Suspenso</option>
+                                    <option>Cancelado</option>
+                                </select>
                             </div>
                             <label for="input_BenefInicio" class="col-md-2 control-label">Inicio</label>
                             <div class="col-md-3">
@@ -764,36 +769,39 @@
             <h3><i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;Carga Horária - Ficha de Funcionário</h3>
             <hr />
 
-            <div class="w3-threequarter">
+            <div>
                 <form class="form-horizontal">
                     <fieldset>
                         <div class="form-group">
                             <label for="input_Inst" class="col-md-2 control-label">Instituição</label>
                             <div class="col-md-8">
-                                <input type="text" class="w3-input w3-border w3-round" id="input_Inst">
+                                <select class="w3-select w3-border w3-round" id="input_Inst">
+                                    <asp:Literal ID="Literal4" runat="server"></asp:Literal>
+                                </select>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="input_CargaHor" class="col-md-2 control-label">Carga Horária</label>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <select class="w3-select w3-border w3-round" id="input_CargaHor">
                                     <option value="20Hs">20Hs</option>
                                     <option value="30Hs - Turnão">30Hs - Turnão</option>
                                     <option value="40Hs">40Hs</option>
                                 </select>
                             </div>
-                             <div class="form-group">
-                                 <label for="input_admissao" class="col-md-2 control-label" ></label>
-                                 <div class="col-md-3">
-                                     <input type="date" id="input_admissao " class="w3-input w3-border w3-round"/>
-                                 </div>
-                               </div>
-                            <div class="col-md-2">
-                                <button type="button" class="w3-btn w3-border w3-round w3-light-green w3-hover-green"
-                                    onclick="CargaHIncluir()">
-                                    <i class="fa fa-plus"></i>&nbsp;Adicionar</button>
+                            <div class="form-group">
+                                <label for="input_admissao" class="col-md-1 control-label">Admissão</label>
+                                <div class="col-md-3">
+                                    <input type="date" id="input_admissao" class="w3-input w3-border w3-round" />
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="w3-btn w3-border w3-round w3-light-green w3-hover-green"
+                                        onclick="CargaHIncluir()">
+                                        <i class="fa fa-plus"></i>&nbsp;Adicionar</button>
+                                </div>
                             </div>
+
                         </div>
 
                         <!-- GRID Carga Horária- -->
@@ -805,6 +813,7 @@
                                         <tr class="w3-grey">
                                             <th>Instituição</th>
                                             <th>Carga Horária</th>
+                                            <th>Admissão</th>
                                         </tr>
                                     </thead>
                                     <asp:Literal ID="Literal5" runat="server"></asp:Literal>
@@ -842,8 +851,7 @@
 
             </div>
 
-            <div class="w3-quarter">
-            </div>
+
         </div>
 
 

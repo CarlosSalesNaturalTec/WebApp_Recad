@@ -3,7 +3,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.Text;
 
-public partial class Funcionarios_Relatorios_PDF : System.Web.UI.Page
+public partial class Instituicoes_Relatorios_PDF_zona : System.Web.UI.Page
 {
     string RelFiltro, idMunicAux, nomeUser, txtAux;
     int colunas;
@@ -23,7 +23,7 @@ public partial class Funcionarios_Relatorios_PDF : System.Web.UI.Page
             nomeUser = Session["UserName"].ToString();
 
             RelFiltro = Request.QueryString["p1"];
-            switch (RelFiltro) { case "Todas": colunas = 5; break; default: colunas = 4; break; }
+            switch (RelFiltro) { case "Todas": colunas = 3; break; default: colunas = 2; break; }
 
             MontaPDF();
         }
@@ -48,9 +48,9 @@ public partial class Funcionarios_Relatorios_PDF : System.Web.UI.Page
         doc.Open();
 
         #region Titulo e SubTitulo do Relatorio
-        txtAux = "Relatório de Funcionários";
+        txtAux = "Relatório de Instituições";
         doc.Add(new Paragraph(txtAux, fontTitulo));
-        txtAux = "Por Secretaria: " + RelFiltro;
+        txtAux = "Por Zona: " + RelFiltro;
         doc.Add(new Paragraph(txtAux, fontSubTitulo));
         doc.Add(Chunk.NEWLINE);
         #endregion
@@ -60,12 +60,10 @@ public partial class Funcionarios_Relatorios_PDF : System.Web.UI.Page
         table.WidthPercentage = 100;
 
         cell = new PdfPCell(new Phrase("Nome", fontTabelaHeader)); table.AddCell(cell);
-        cell = new PdfPCell(new Phrase("Vínculo", fontTabelaHeader)); table.AddCell(cell);
-        cell = new PdfPCell(new Phrase("Situação", fontTabelaHeader)); table.AddCell(cell);
-        cell = new PdfPCell(new Phrase("Função", fontTabelaHeader)); table.AddCell(cell);
-        if (colunas == 5)
+        cell = new PdfPCell(new Phrase("Cidade", fontTabelaHeader)); table.AddCell(cell);
+       if (colunas == 3)
         {
-            cell = new PdfPCell(new Phrase("Lotado em", fontTabelaHeader)); table.AddCell(cell);
+            cell = new PdfPCell(new Phrase("Zona", fontTabelaHeader)); table.AddCell(cell);
         }
         #endregion
 
@@ -95,38 +93,33 @@ public partial class Funcionarios_Relatorios_PDF : System.Web.UI.Page
         switch (RelFiltro)
         {
             case "Todas":
-                stringselect = "select  nome, vinculo, Situacao , funcao, lotado " +
-                    "from Tbl_Funcionarios " +
+                stringselect = "select  Nome, Cidade , Zona " +
+                    "from Tbl_Instituicao  " +
                     "where ID_Munic = " + idMunicAux +
-                    " order by lotado,nome";
+                    " order by Zona,nome";
                 break;
 
             default:
-                stringselect = "select nome, vinculo, Situacao , funcao, lotado " +
-                    "from Tbl_Funcionarios " +
-                    "where ID_Munic = " + idMunicAux +
-                    " and lotado = '" + RelFiltro + "'" +
-                    " order by lotado,nome";
+                stringselect = "select  Nome, Cidade , Zona " +
+                     "from Tbl_Instituicao  " +
+                     "where Zona = '" + RelFiltro + "'" +
+                     " order by nome";
                 break;
         }
 
         OperacaoBanco operacao = new OperacaoBanco();
         System.Data.SqlClient.SqlDataReader dados = operacao.Select(stringselect);
-        string Coluna1, Coluna2, Coluna3, Coluna4, Coluna5;
+        string Coluna1, Coluna2, Coluna3; 
 
         while (dados.Read())
         {
             Coluna1 = Convert.ToString(dados[0]);
             Coluna2 = Convert.ToString(dados[1]);
             Coluna3 = Convert.ToString(dados[2]);
-            Coluna4 = Convert.ToString(dados[3]);
-            Coluna5 = Convert.ToString(dados[4]);
-
+            
             cell = new PdfPCell(new Phrase(Coluna1, fontTabela)); table.AddCell(cell);
             cell = new PdfPCell(new Phrase(Coluna2, fontTabela)); table.AddCell(cell);
-            cell = new PdfPCell(new Phrase(Coluna3, fontTabela)); table.AddCell(cell);
-            cell = new PdfPCell(new Phrase(Coluna4, fontTabela)); table.AddCell(cell);
-            if (colunas == 5) { cell = new PdfPCell(new Phrase(Coluna5, fontTabela)); table.AddCell(cell); }
+            if (colunas == 3) { cell = new PdfPCell(new Phrase(Coluna3, fontTabela)); table.AddCell(cell); }
 
         }
         ConexaoBancoSQL.fecharConexao();

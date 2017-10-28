@@ -35,10 +35,10 @@
                         <div class="col-md-6">
                             <select class="form-control" id="input_investimento">
                                 <option value="Todas">Todas</option>
-                                <option value="investimento_federal">Federal</option>
-                                <option value="investimento_Estadual">Estadual</option>
-                                <option value="investimento_Municipal">Municipal</option>
-                                <option value="investimento_Convênio">Convênio</option>
+                                <option value="Federal">Federal</option>
+                                <option value="Estadual">Estadual</option>
+                                <option value="Municipal">Municipal</option>
+                                <option value="Convênio">Convênio</option>
                            </select>
                         </div>
                         <div class="col-md-1">
@@ -51,8 +51,8 @@
                         <div class="col-md-6">
                             <select class="form-control" id="input_zona">
                                 <option value="Todas">Todas</option>
-                                <option value="zona_Urbana">Urbana</option>
-                                <option value="zona_Rural">Rural</option>
+                                <option value="Urbana">Urbana</option>
+                                <option value="Rural">Rural</option>
                            </select>
                         </div>
                         <div class="col-md-1">

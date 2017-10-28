@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web.Services;
 using System.Data.SqlClient;
+using System.Text;
 
 /// <summary>
 /// Summary description for WebService
@@ -875,19 +876,21 @@ public class WebService : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public string FuncionariosNewCargaH(string param1, string param2, string param3, string param4)
+    public string FuncionariosNewCargaH(string param1,  string param2, string param3, string param4, string param5)
     {
-        string url;
 
+        
+
+        string url;
         OperacaoBanco operacaoInst2 = new OperacaoBanco();
-        Boolean inserirUser = operacaoInst2.Insert("INSERT INTO Tbl_Funcionarios_CargaHor (ID_func  , Instituicao , Carga , inicio_atividades) " +
-           "VALUES (" +
-           param1 + "," +
-           "'" + param2 + "'," +
+        Boolean inserirUser = operacaoInst2.Insert("INSERT INTO Tbl_Funcionarios_CargaHor (ID_func ,ID_inst, Instituicao , Carga , inicio_atividades) " +
+           "VALUES (" + 
+            param1 + ", " +
+            param2 + "," +
            "'" + param3 + "'," +
-           "'" + param4 + "'" +
-           ")"
-           );
+           "'" + param4 + "'," +
+           "'" + param5 + "'" +
+           ")");
 
         ConexaoBancoSQL.fecharConexao();
 
@@ -897,7 +900,7 @@ public class WebService : System.Web.Services.WebService
         }
         else
         {
-            url = "NÃO FOI POSSIVEL INCLUIR USUARIO";
+            url = "NÃO FOI POSSIVEL INCLUIR CARGA HORARIA ";
         }
 
         return url;

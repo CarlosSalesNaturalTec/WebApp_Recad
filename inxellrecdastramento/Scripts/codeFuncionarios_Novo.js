@@ -259,16 +259,24 @@ function BeneficioInsertLinha() {
 
 function CargaHIncluir() {
 
-    //validações
-    var v1 = document.getElementById("IDHidden").value;
-    var v2 = document.getElementById("input_Inst").value;
-    var v3 = document.getElementById("input_CargaHor").value;
-    var v4 = document.getElementById("input_admissao").value;
+    
+    var v1 = document.getElementById("IDHidden").value; //id_funcionario 
+    var v_inst = document.getElementById("input_Inst").value; //id_instituicao
+    var v2 = document.getElementById("input_Inst"); 
+    var v2_2 = v2.options[v2.selectedIndex].text; //instituicao_nome
+    var v4 = document.getElementById("input_CargaHor").value; //carga
+    var v5 = document.getElementById("input_admissao").value; //admissao
+
+    if (v_inst == '0') {
+        alert("Selecione uma instituição");
+        return;
+    }
+   
 
     $.ajax({
         type: "POST",
         url: "WebService.asmx/FuncionariosNewCargaH",
-        data: '{param1: "' + v1 + '", param2: "' + v2 + '", param3: "' + v3 + '" param4: "' + v4 + '"}',
+        data: '{param1: "' + v1 + '", param2: "' + v_inst + '", param3: "' + v2_2 + '", param4: "' + v4 + '", param5: "' + v5 + '"}',
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {
@@ -307,9 +315,10 @@ function CargaHExcluir(r, USerID) {
 
 function CargaHInsertLinha() {
 
-    var col1 = document.getElementById('input_Inst').value;
     var col2 = document.getElementById('input_CargaHor').value;
     var col3 = document.getElementById('input_admissao').value;
+    var v2 = document.getElementById("input_Inst");
+    var col1= v2.options[v2.selectedIndex].text;
 
     var table = document.getElementById("TableCargaH");
 
