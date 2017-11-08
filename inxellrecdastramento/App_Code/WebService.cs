@@ -349,14 +349,14 @@ public class WebService : System.Web.Services.WebService
 
     [WebMethod]
     public string MunicipioSalvar(string param0, string param1, string param2, string param3, string param4, string param5,
-            string param6, string param7, string param8)
+            string param6, string param7, string param8 , string param9 )
     {
         string url;
 
         OperacaoBanco operacao = new OperacaoBanco();
         // <!--*******Customização*******-->
         bool inserir = operacao.Insert("INSERT INTO Tbl_Municipios (Nome, UF, Gestor, TElefone, email, Endereco, " +
-            "Latitude, Longitude, Logomarca ) " +
+            "Latitude, Longitude, ID_uf ,Logomarca ) " +
             "VALUES (" +
             "'" + param0 + "'," +
             "'" + param1 + "'," +
@@ -365,8 +365,9 @@ public class WebService : System.Web.Services.WebService
             "'" + param4 + "'," +
             "'" + param5 + "'," +
             "'" + param6 + "'," +
-            "'" + param7 + "'," +
-            "'" + param8 + "'" +
+            "'" + param7 + "'," 
+            + param8 + "," +
+             "'" + param9 + "'" +
             ")");
         ConexaoBancoSQL.fecharConexao();
 
@@ -876,21 +877,20 @@ public class WebService : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public string FuncionariosNewCargaH(string param1,  string param2, string param3, string param4, string param5)
+    public string FuncionariosNewCargaH(string param1,  string param2, string param3, string param4)
     {
 
         
 
         string url;
         OperacaoBanco operacaoInst2 = new OperacaoBanco();
-        Boolean inserirUser = operacaoInst2.Insert("INSERT INTO Tbl_Funcionarios_CargaHor (ID_func ,ID_inst, Instituicao , Carga , inicio_atividades) " +
+        Boolean inserirUser = operacaoInst2.Insert("INSERT INTO Tbl_Funcionarios_CargaHor (ID_func ,ID_inst, Instituicao , Carga) " +
            "VALUES (" + 
             param1 + ", " +
             param2 + "," +
            "'" + param3 + "'," +
            "'" + param4 + "'," +
-           "'" + param5 + "'" +
-           ")");
+          ")");
 
         ConexaoBancoSQL.fecharConexao();
 

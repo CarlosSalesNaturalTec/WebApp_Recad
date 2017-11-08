@@ -1,5 +1,13 @@
 ﻿function NovoRegistro() {
+    var v1 = document.getElementById('IdNivelAux').value;
+
+    if (v1 == 0) {
+        alert("Fazer login com perfil municipal");
+        return;
+    }
     window.location.href = "Funcionarios_Novo.aspx";  // <!--*******Customização*******-->
+
+
 }
 
 function ExcluirRegistro() {
@@ -25,6 +33,13 @@ function ExcluirRegistro() {
 }
 
 function Excluir(IDExc) {
+
+    var v1 = document.getElementById('IdNivelAux').value;
+     if (v1 == 0) {
+        alert("Fazer login com perfil municipal");
+        return;
+    }
+
     document.getElementById('HiddenID').value = IDExc;
     document.getElementById('DivModal').style.display = "block";
 }
@@ -34,6 +49,26 @@ function Excluir_cancel() {
 }
 
 function Imprimir(idDig) {
+
+    var v1 = document.getElementById('IdNivelAux').value;
+     if (v1 == 0) {
+        alert("Fazer login com perfil municipal");
+        return;
+    }
+
+
     var urlURI = "Funcionarios_Imprimir.aspx?p1=" + idDig;
     window.open(urlURI, '_blank');
+}
+
+function exibirFicha(idEX) {
+
+    var v1 = document.getElementById('IdNivelAux').value;
+    if (v1 == 0) {
+        alert("Fazer login com perfil municipal");
+        return;
+    }
+
+    var urlURI = "Funcionarios_Ficha.aspx?v1=" + idEX;
+    window.location.href = urlURI;
 }

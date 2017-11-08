@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Text;
 
 public partial class CAD_Instituicao_Listagem : System.Web.UI.Page
@@ -6,13 +7,21 @@ public partial class CAD_Instituicao_Listagem : System.Web.UI.Page
     StringBuilder str = new StringBuilder();
     int TotaldeRegistros = 0;
     string IDMun;
+    int nivel;
 
     protected void Page_Load(object sender, EventArgs e)
     {
 
+        string idlevel = Session["UserLevel"].ToString();
+        /* <!--*******Customização somente se for usar um "ID Auxiliar" para o novo registro *******--> */
+        string ScriptAux = "<script type=\"text/javascript\">" +
+                        "document.getElementById('IdNivelAux').value = \"" + idlevel + "\";" +
+                        "</script>";
+        Literal_nivel.Text = ScriptAux;
+
         // somente usuarios nivel 1 tem acesso (gestor de município)
-        int nivel = Convert.ToInt16(Session["UserLevel"].ToString());
-        if (nivel != 1) { Response.Redirect("NaoAutorizado.aspx"); }
+        nivel = Convert.ToInt16(Session["UserLevel"].ToString());
+        // if (nivel != 1) { Response.Redirect("NaoAutorizado.aspx"); }
 
         string iduser = Session["UserID"].ToString();
         IDMun = Session["ID_Munic"].ToString();
@@ -28,10 +37,10 @@ public partial class CAD_Instituicao_Listagem : System.Web.UI.Page
     private void montaCabecalho()
     {
         // <!--*******Customização*******-->
-        string stringcomaspas = "<table id=\"tabela\" class=\"table table-striped table-hover \">" +
+        string stringcomaspas = "<table id=\"tabela\" class=\"table table-striped table-hover table-bordered\">" +
             "<thead>" +
             "<tr>" +
-            "<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NOME</th>" +
+            "<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;INSTITUIÇÃO</th>" +
             "<th>CIDADE</th>" +
             "<th>UF</th>" +
             "<th>DIRETOR</th>" +
@@ -46,11 +55,24 @@ public partial class CAD_Instituicao_Listagem : System.Web.UI.Page
     private void dadosCorpo()
     {
         // <!--*******Customização*******-->
-        string stringselect = "select ID_inst, nome, cidade, uf, diretor, telefone " +
-                "from Tbl_Instituicao " +
-                "where ID_Munic = " + IDMun + 
-                "order by Nome"; 
 
+        string stringselect = " ";
+
+        switch (nivel)
+        {
+            case 0:
+                stringselect = "select ID_inst, nome, cidade, uf, diretor, telefone " +
+                        "from Tbl_Instituicao " +
+                        "order by Nome";
+                break;
+
+            default:
+                stringselect = "select ID_inst, nome, cidade, uf, diretor, telefone " +
+                           "from Tbl_Instituicao " +
+                           "where ID_Munic = " + IDMun +
+                           "order by Nome";
+                break;
+        }
         OperacaoBanco operacao = new OperacaoBanco();
         System.Data.SqlClient.SqlDataReader dados = operacao.Select(stringselect);
 
@@ -62,10 +84,10 @@ public partial class CAD_Instituicao_Listagem : System.Web.UI.Page
             string Coluna2 = Convert.ToString(dados[2]);
             string Coluna3 = Convert.ToString(dados[3]);
             string Coluna4 = Convert.ToString(dados[4]);
-            string Coluna5 = Convert.ToString(dados[5]);
+           string Coluna5 = Convert.ToString(dados[5]);
 
             // <!--*******Customização*******-->
-            string bt1 = "<a class='w3-btn w3-round w3-hover-blue w3-text-green' href='CAD_Instituicao_Ficha.aspx?v1=" + Coluna0 + "'><i class='fa fa-id-card-o' aria-hidden='true'></i></a>";
+            string bt1 = "<a class='w3-btn w3-round w3-hover-blue w3-text-green' onclick='exibirFicha(" + Coluna0 + ")'><i class='fa fa-id-card-o' aria-hidden='true'></i></a>";
             string bt2 = "<a class='w3-btn w3-round w3-hover-red w3-text-green' onclick='Excluir(" + Coluna0 + ")'><i class='fa fa-trash-o' aria-hidden='true'></i></a>&nbsp;&nbsp;";
 
             // <!--*******Customização*******-->
@@ -73,7 +95,6 @@ public partial class CAD_Instituicao_Listagem : System.Web.UI.Page
                 "<td>" + bt1 + bt2 + Coluna1 + "</td>" +
                 "<td>" + Coluna2 + "</td>" +
                 "<td>" + Coluna3 + "</td>" +
-                "<td>" + Coluna4 + "</td>" +
                 "<td>" + Coluna4 + "</td>" +
                 "<td>" + Coluna5 + "</td>" +
                 "</tr>";

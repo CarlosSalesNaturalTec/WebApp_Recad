@@ -1,0 +1,338 @@
+create table tbl_usuarios(
+	ID_user int IDENTITY primary key not null,
+	ID_Munic int,  
+	ID_inst int,
+	Nome varchar(100),
+	usuario varchar(50),
+	senha varchar(10),
+	nivel int,
+	DataCadastro datetime
+) 
+
+nivel 0 = desenvolvedor - estado
+nivel 1 = gestor municipal
+nivel 2 = gestor de instituição
+nivel 3 = funcionario de instituição
+
+insert into tbl_usuarios (Nome,usuario,senha,nivel,ID_inst,DataCadastro ) values ('Desenvolvedor','dev','1',0,1,getdate())
+
+create table Tbl_Municipios (
+	ID_Munic int IDENTITY primary key not null,
+	ID_uf int,
+	Nome varchar(100),
+	UF varchar(5),
+	Gestor varchar(100),
+	Telefone varchar(100),
+	Email varchar(100),
+	Endereco varchar(100),
+	Latitude varchar(100),
+	Longitude varchar(100),
+	Logomarca text
+)
+
+create table Tbl_Instituicao (
+	ID_inst int IDENTITY primary key not null,
+	ID_Munic int, 
+	Nome varchar(100),
+	Razao varchar(100),
+	CNPJ varchar(100),
+	IE varchar(100),
+	Cat_Adm varchar(100),
+	MEC_Cadastro varchar(100),
+	Investimento varchar(50),	 
+
+	Telefone varchar(100),
+	Celular varchar(100),
+	Fax varchar(100),
+	Email varchar(100),
+	Endereco varchar(100),
+	Numero varchar(100),
+	Complemento varchar(100),
+	Bairro varchar(100),
+	CEP varchar(100),
+	Cidade varchar(100),
+	UF varchar(100),
+	Zona varchar(20),
+	Diretor varchar(100),
+	Admissao varchar(100),
+
+	InepCodigo varchar(20),
+	UECodigo varchar(20),
+	Porte varchar(20),
+	Modalidade varchar(20),
+	DecretoCriacao varchar(20),
+	DataCriacao varchar(20),
+	FuncionaMatutino varchar(3),
+	FuncionaVespertino varchar(3),
+	FuncionaNoturno varchar(3),
+
+	Anexo varchar(3),
+	Transporte varchar(3),
+	ColetaLixo varchar(3),
+	Biblioteca varchar(3),
+	Ginasio varchar(3),
+	Assentamento varchar(3),
+	TipoCercado varchar(20),
+	TipoEsgoto varchar(20),
+	EnergiaEletrica varchar(20),
+	PredioImovel varchar(20),
+	UsoPredio varchar(20),
+	QuantPredios varchar(20),
+	QuantSalasAdm varchar(20),
+	QuantSalasApoio varchar(20),
+	QuantBanheirosMasc varchar(20),
+	QuantBanheirosFem varchar(20),
+	
+	Salas varchar(100),
+	AreaJogos varchar(100),
+	AreaInfo varchar(100),
+	Teatro varchar(100),
+	CampoFutebol varchar(100),
+	QuadraEsportes varchar(100),
+
+	Logomarca text
+)
+
+
+================================================================================================================================================================
+
+create table Tbl_Funcionarios (
+	ID_func int IDENTITY primary key not null,
+	ID_Munic int, 
+	Nome varchar(100),
+	Sexo varchar(10),		
+	Nascimento varchar(100),
+	Pai varchar(100),
+	Mae varchar(100),
+	Naturalidade varchar(100),
+	Nacionalidade varchar(100),
+	Escolaridade varchar(100),
+	EstadoCivil varchar(100),
+	Etnia varchar(100),
+	TipoSanguinio varchar(100),
+	Deficiente varchar(100),
+	DeficienteTipo varchar(100),
+	
+	Endereco varchar(100),
+	Latitude varchar(100),
+	Longitude varchar(100),
+	Numero varchar(100),
+	Bairro varchar(100),
+	CEP varchar(100),
+	UF varchar(100),
+	Cidade varchar(100),
+	Celular1 varchar(100),
+	Celular2 varchar(100),
+	TelFixo varchar(100),
+	email varchar(100),
+
+	PIS varchar(100),
+	CPF varchar(100),
+	RG varchar(100),
+	RGEmissor varchar(100),
+	RGEmissao varchar(100),
+	CTPS varchar(100),
+	CTPSserie varchar(100),
+	CTPSEmissao varchar(100),
+	Titulo varchar(100),
+	Zona varchar(100),
+	Secao varchar(100),
+	CNH varchar(100),
+	Passaporte varchar(100),
+				
+	Vinculo	varchar(100),			
+	Situacao varchar(100),
+	Funcao varchar(100),
+	TabelaSal varchar(100),
+	SalarioBruto float,
+	SalarioInvest varchar(50),
+	Sindicalizado varchar(100),
+	SindicatoNome varchar(100),
+	lotado varchar(100),			
+	Matricula varchar(100),		
+	inicio_atividades datetime,
+		
+
+	Banco varchar(100),
+	Agencia varchar(100),
+	ContaTipo varchar(100),
+	ContaNumero varchar(100),
+	ContaOperacao varchar(100),
+
+	Alergias varchar(100),
+	AlergiasMed varchar(100),
+	AcidenteAvisar varchar(100),
+	CartaoSUS varchar(100),			
+
+	FardaCamisa varchar(100),
+	FardaCamiseta varchar(100),
+	FardaCalca varchar(100),
+	FardaSapato varchar(100),
+	FardaBota varchar(100),
+	FardaObs varchar(100),
+	Cracha	varchar(100),
+
+	CadastroData datetime,			****
+	CadastroResp varchar(100),		****
+	CadastroRespID int,			****
+	
+	FotoDataURI text
+)
+
+create table Tbl_Funcionarios_Dependentes(
+	ID_Depend int IDENTITY primary key not null,
+	ID_func int,
+	Nome varchar(100),
+	Parentesco varchar(100),
+	Nascimento varchar(100)
+)
+
+create table Tbl_Funcionarios_Beneficios (
+	ID_Benef int IDENTITY primary key not null,
+	ID_func int,
+	Beneficio varchar(100),
+	Situacao varchar(100),
+	Inicio varchar(100)
+)
+
+create table Tbl_Funcionarios_CargaHor (
+	ID_CargaH int IDENTITY primary key not null,
+	ID_func int,
+	ID_Munic int,
+	ID_Inst int,
+	Instituicao varchar(100),
+	Carga varchar(50)
+)
+
+create table Tbl_Funcionarios_Digitalizacoes (
+	ID_Digitaliza int IDENTITY primary key not null,
+	ID_func int,
+	TipoDoc varchar(100),
+	Obs varchar(100),
+	Digitaliza text
+)
+
+
+create table Tbl_Funcionarios_gratificacoes (
+	ID_Gratifica int IDENTITY primary key not null,
+	ID_func int,
+	Gratificacao varchar(100),
+	Obs varchar(100)
+)
+	
+create table Tbl_Funcionarios_formacoes (
+	ID_formacao int IDENTITY primary key not null,
+	ID_func int,
+	Tipo varchar(100),
+	descricao varchar(100),
+	atuacao varchar(100),
+	instituicao varchar(100),
+	Conclusao varchar(10)
+)
+
+
+
+
+===================================================================================
+
+create table Tbl_Disciplinas (
+	ID_Disc int IDENTITY primary key not null,
+	ID_Inst int,
+	nome varchar(100),
+	obs varchar(100)
+	);
+
+create table Tbl_Visitas(
+	ID_Visita int IDENTITY primary key not null,
+	ID_Inst int,
+	ID_func int,
+	Nome varchar(100),
+	DataVisita varchar(100),
+	Horario varchar(100),
+	Funcionario varchar(100),
+	Objetivo varchar(100),
+	Observacoes varchar(300)
+)
+
+create table Tbl_Cursos(
+	ID_Curs int IDENTITY primary key not null,
+	ID_Inst int,
+	Nome varchar(100),
+	sigla varchar(100),
+	equivalencia varchar(100),
+	modalidade_educacional varchar(100),
+	faixa_ini varchar(100),
+	faixa_fim varchar(100),
+	curso_anterior varchar(100),
+	obs varchar(100)
+)
+
+create table Tbl_Salas (
+	ID_Sala int IDENTITY primary key not null,
+	ID_Inst int,
+	Nome varchar(100),
+	sala_adm varchar(100),
+	dimensao varchar(100),
+	capacidade_max varchar(100),
+	obs varchar(100)
+)
+
+================================================================================================
+
+Create Table tbl_alunos (
+	ID_Aluno int IDENTITY primary key not null,
+	ID_Inst int,
+	Nome varchar(100),
+	Nascimento datetime,
+	EstadoCivil varchar(100),
+	Pai varchar(100),
+	Mae varchar(100),
+	Responsavel varchar(100),
+	ResponsavelCPF varchar(100),
+	ResponsavelTel varchar(100),
+	Naturalidade varchar(100),
+	Nacionalidade varchar(100), 	X
+	Etnia varchar(100),
+	TipoSanguinio varchar(100),
+	Deficiente varchar(100),
+	DeficienteTipo varchar(100),
+	Endereco varchar(100),
+	Numero varchar(100),
+	Bairro varchar(100),
+	CEP varchar(100),
+	Cidade varchar(100),
+	UF varchar(100),		X
+	Latitude varchar(100),
+	Longitude varchar(100),
+	Celular1 varchar(100),
+	Celular2 varchar(100),
+	TelFixo varchar(100),
+	email varchar(100),
+	PIS varchar(100),
+	CPF varchar(100),
+	RG varchar(100),
+	RGEmissor varchar(100),		X
+	RGEmissao varchar(100),
+	CTPS varchar(100),
+	CTPSserie varchar(100),
+	CTPSEmissao varchar(100),
+	Titulo varchar(100),
+	Zona varchar(100),
+	Secao varchar(100),
+	CNH varchar(100),
+	Passaporte varchar(100),
+	CertNasc varchar(100),		X
+	Alergias varchar(100),
+	AlergiasMed varchar(100),
+	AcidenteAvisar varchar(100),
+	CartaoSUS varchar(100),
+	FardaCamisa varchar(100),
+	FardaCamiseta varchar(100),
+	FardaCalca varchar(100),
+	FardaSapato varchar(100),
+	FardaBota varchar(100),
+	FardaObs varchar(100),		X
+	FotoDataURI text
+)
+
+

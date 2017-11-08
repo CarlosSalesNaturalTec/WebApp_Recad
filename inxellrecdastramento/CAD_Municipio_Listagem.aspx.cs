@@ -5,15 +5,17 @@ public partial class CAD_Municipio_Listagem : System.Web.UI.Page
 {
     StringBuilder str = new StringBuilder();
     int TotaldeRegistros = 0;
+    string iduser;
+    int nivel;
 
     protected void Page_Load(object sender, EventArgs e)
     {
 
         // somente usuarios nivel 0 tem acesso (gestor estadual / developer)
-        int nivel = Convert.ToInt16(Session["UserLevel"].ToString());
-        if (nivel > 0 ) { Response.Redirect("NaoAutorizado.aspx");}
+        nivel = Convert.ToInt16(Session["UserLevel"].ToString());
+        if (nivel > 0) { Response.Redirect("NaoAutorizado.aspx"); }
 
-        string iduser = Session["UserID"].ToString();
+        iduser = Session["UserID"].ToString();
 
         montaCabecalho();
         dadosCorpo();
@@ -26,15 +28,14 @@ public partial class CAD_Municipio_Listagem : System.Web.UI.Page
     private void montaCabecalho()
     {
         // <!--*******Customização*******-->
-        string stringcomaspas = "<table id=\"tabela\" class=\"table table-striped table-hover \">" +
+        string stringcomaspas = "<table id=\"tabela\" class=\"table table-striped table-hover table-bordered\">" +
             "<thead>" +
             "<tr>" +
-            "<th>NOME</th>" +
+            "<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MUNICÍPIO</th>" +
             "<th>UF</th>" +
             "<th>GESTOR</th>" +
             "<th>TELEFONE</th>" +
-            "<th>DETALHES</th>" +
-            "</tr>" +
+             "</tr>" +
             "</thead>" +
             "<tbody>";
         str.Clear();
@@ -44,9 +45,13 @@ public partial class CAD_Municipio_Listagem : System.Web.UI.Page
     private void dadosCorpo()
     {
         // <!--*******Customização*******-->
-        string stringselect = "select ID_Munic , nome, UF, gestor, telefone " +
-                "from Tbl_Municipios " +
-                "order by UF, Nome"; 
+
+        string stringselect = "";
+
+        stringselect = "select ID_Munic , nome, UF, gestor, telefone " +
+       "from Tbl_Municipios " +
+       "where ID_uf = " + iduser +
+       " order by UF, Nome";
 
         OperacaoBanco operacao = new OperacaoBanco();
         System.Data.SqlClient.SqlDataReader dados = operacao.Select(stringselect);
@@ -66,11 +71,11 @@ public partial class CAD_Municipio_Listagem : System.Web.UI.Page
 
             // <!--*******Customização*******-->
             string stringcomaspas = "<tr>" +
-                "<td>" + Coluna1 + "</td>" +
+
+                "<td>" + bt1 + bt2 + Coluna1 + "</td>" +
                 "<td>" + Coluna2 + "</td>" +
                 "<td>" + Coluna3 + "</td>" +
                 "<td>" + Coluna4 + "</td>" +
-                "<td>" + bt1 + bt2 + "</td>" +
                 "</tr>";
 
             str.Append(stringcomaspas);

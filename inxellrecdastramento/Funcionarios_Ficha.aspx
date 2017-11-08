@@ -1,4 +1,4 @@
-﻿f<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Funcionarios_Ficha.aspx.cs" Inherits="Funcionarios_Ficha" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Funcionarios_Ficha.aspx.cs" Inherits="Funcionarios_Ficha" %>
 
 <!DOCTYPE html>
 
@@ -58,6 +58,8 @@
         <button id="bt11" class="w3-bar-item w3-button tablink w3-hover-light-blue" onclick="openLink(event, 'grupo11')"><i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;Digitalizações</button>
         <button id="bt12" class="w3-bar-item w3-button tablink w3-hover-light-blue" onclick="openLink(event, 'grupo12')"><i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;Gratificações</button>
         <button id="bt13" class="w3-bar-item w3-button tablink w3-hover-light-blue" onclick="openLink(event, 'grupo13')"><i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;Formação</button>
+        <button id="bt14" class="w3-bar-item w3-button tablink w3-hover-light-blue" onclick="openLink(event, 'grupo14')"><i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;Biometria</button>
+
         <hr />
 
     </div>
@@ -729,6 +731,13 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label for="input_admissão" class="col-md-2 control-label">Admissão</label>
+                            <div class="col-md-4">
+                                <input type="date" class="form-control" id="input_admissão">
+                            </div>
+                        </div>
+
                     </fieldset>
                 </form>
 
@@ -791,10 +800,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="input_admissao" class="col-md-1 control-label">Admissão</label>
-                                <div class="col-md-3">
-                                    <input type="date" id="input_admissao" class="w3-input w3-border w3-round" />
-                                </div>
+                              
                                 <div class="col-md-1">
                                     <button type="button" class="w3-btn w3-border w3-round w3-light-green w3-hover-green"
                                         onclick="CargaHIncluir()">
@@ -807,13 +813,12 @@
                         <!-- GRID Carga Horária- -->
                         <div class="form-group">
                             <div class="col-md-2"></div>
-                            <div class="col-md-10 w3-border w3-padding w3-round w3-light-gray">
+                            <div class="col-md-8 w3-border w3-padding w3-round w3-light-gray">
                                 <table id="TableCargaH" class="w3-table-all w3-hoverable">
                                     <thead>
                                         <tr class="w3-grey">
                                             <th>Instituição</th>
                                             <th>Carga Horária</th>
-                                            <th>Admissão</th>
                                         </tr>
                                     </thead>
                                     <asp:Literal ID="Literal5" runat="server"></asp:Literal>
@@ -828,7 +833,7 @@
                 <!-- Botões Controle -->
                 <div class="form-group">
                     <div class="col-md-2"></div>
-                    <div class="col-md-10 w3-border w3-padding w3-round">
+                    <div class="col-md-8 w3-border w3-padding w3-round">
                         <p>
 
                             <button class="w3-btn w3-round w3-border w3-light-green w3-hover-green btcontroles" onclick="cancelar()">
@@ -1369,6 +1374,9 @@
                             <button class="w3-btn w3-round w3-border w3-light-green w3-hover-green btcontroles" onclick="btvoltar12()">
                                 <i class="fa fa-backward" aria-hidden="true"></i>&nbsp;Voltar</button>
 
+                            <button class="w3-btn w3-round w3-border w3-light-green w3-hover-green btcontroles" onclick="classeBt14()">
+                                <i class="fa fa-forward" aria-hidden="true"></i>&nbsp;Avançar</button>
+
                             <button class="w3-btn w3-round w3-border w3-light-green w3-hover-green btcontroles" onclick="AlterarRegistro()">
                                 <i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;Finalizar&nbsp;
                             </button>
@@ -1377,11 +1385,40 @@
                         </p>
                     </div>
                 </div>
+
                 <!-- Botões Controle -->
 
             </div>
-
         </div>
+
+         <!-- Grupo 14 Biometria -->
+        <div id="grupo14" class="w3-container grupo w3-animate-left" style="display: none">
+            <h3><i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;Biometria - Ficha de Funcionário</h3>
+            <hr />
+            <br />
+            <div class="w3-threequarter">
+                <br />
+                <div class="form-group">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-10 w3-border w3-padding w3-round">
+                        <p>
+                            <button class="w3-btn w3-round w3-border w3-light-green w3-hover-green btcontroles" onclick="cancelar()">
+                                <i class="fa fa-undo" aria-hidden="true"></i>&nbsp;Sair</button>
+
+                            <button class="w3-btn w3-round w3-border w3-light-green w3-hover-green btcontroles" onclick="btvoltar13()">
+                                <i class="fa fa-backward" aria-hidden="true"></i>&nbsp;Voltar</button>
+
+                            <button class="w3-btn w3-round w3-border w3-light-green w3-hover-green btcontroles" onclick="AlterarRegistro()">
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;Finalizar&nbsp;
+                            </button>
+
+                            <i style="display: none" class="aguarde fa-2x fa fa-cog fa-spin fa-fw w3-text-green w3-right"></i>
+                        </p>
+                    </div>
+                   </div>
+            </div>
+        </div>
+
 
 
         <!-- Modal Digitalização -->
@@ -1448,6 +1485,5 @@
     <script type="text/javascript" src="Scripts/webcam.js"></script>
     <script type="text/javascript" src="Scripts/codeFuncionarios_Mapa.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiB9wl9opTaUAh60CpLbHnT3he_-1brJE&libraries=places&callback=initMap" async defer></script>
-
 </body>
 </html>

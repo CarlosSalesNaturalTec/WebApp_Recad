@@ -265,7 +265,7 @@ public partial class Funcionarios_Ficha : System.Web.UI.Page
     private void CargaHLista(string ID)
     {
 
-        string stringSelect = "select ID_CargaH, Instituicao , Carga, format(inicio_atividades,'dd/MM/yyyy')  " +
+        string stringSelect = "select ID_CargaH, Instituicao , Carga " +
             " from Tbl_Funcionarios_CargaHor " +
             " where ID_func = " + ID;
         OperacaoBanco operacaoUsers = new OperacaoBanco();
@@ -289,10 +289,6 @@ public partial class Funcionarios_Ficha : System.Web.UI.Page
 
             ScriptDados = "<td>" + Convert.ToString(rcrdsetUsers[2]) + "</td>";
             str.Append(ScriptDados);
-
-            ScriptDados = "<td>" + Convert.ToString(rcrdsetUsers[3]) + "</td>";
-            str.Append(ScriptDados);
-
 
             ScriptDados = "</tr>";
             str.Append(ScriptDados);

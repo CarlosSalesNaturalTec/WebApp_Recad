@@ -25,7 +25,7 @@ public partial class Funcionarios_Relatorios_PDF_Inst : System.Web.UI.Page
             RelFiltro = Request.QueryString["p1"];
             nomeFiltro = Request.QueryString["p2"];
 
-            switch (RelFiltro) { case "0": colunas = 4; break; default: colunas = 3; break; }
+            switch (RelFiltro) { case "0": colunas = 5; break; default: colunas = 4; break; }
 
             MontaPDF();
         }
@@ -52,7 +52,7 @@ public partial class Funcionarios_Relatorios_PDF_Inst : System.Web.UI.Page
         #region Titulo e SubTitulo do Relatorio
         txtAux = "Relatório de Funcionários";
         doc.Add(new Paragraph(txtAux, fontTitulo));
-        txtAux = "Por Instituição: " + nomeFiltro;
+        txtAux = "Por Instituição   : " + nomeFiltro;
         doc.Add(new Paragraph(txtAux, fontSubTitulo));
         doc.Add(Chunk.NEWLINE);
         #endregion
@@ -64,7 +64,9 @@ public partial class Funcionarios_Relatorios_PDF_Inst : System.Web.UI.Page
         cell = new PdfPCell(new Phrase("Nome", fontTabelaHeader)); table.AddCell(cell);
         cell = new PdfPCell(new Phrase("Carga Horaria", fontTabelaHeader)); table.AddCell(cell);
         cell = new PdfPCell(new Phrase("Admissão", fontTabelaHeader)); table.AddCell(cell);
-        if (colunas == 4)
+        cell = new PdfPCell(new Phrase("Anos", fontTabelaHeader)); table.AddCell(cell);
+
+        if (colunas == 5)
         {
             cell = new PdfPCell(new Phrase("Instituição", fontTabelaHeader)); table.AddCell(cell);
         }
@@ -96,7 +98,8 @@ public partial class Funcionarios_Relatorios_PDF_Inst : System.Web.UI.Page
         switch (RelFiltro)
         {
             case "0":
-                stringselect = "select  Tbl_Funcionarios.nome, Tbl_Funcionarios_CargaHor.Carga ,format(Tbl_Funcionarios_CargaHor.inicio_atividades,'dd/MM/yyyy'), Tbl_Funcionarios_CargaHor.Instituicao " +
+                stringselect = "select  Tbl_Funcionarios.nome, Tbl_Funcionarios_CargaHor.Carga ,format(Tbl_Funcionarios_CargaHor.inicio_atividades,'dd/MM/yyyy'), " +
+                    "Tbl_Funcionarios_CargaHor.Instituicao , DATEDIFF(year , Tbl_Funcionarios_CargaHor.inicio_atividades , getdate()) as Tempo Trabalhado " +
                     "from Tbl_Funcionarios_CargaHor  " +
                     "INNER JOIN Tbl_Funcionarios ON Tbl_Funcionarios_CargaHor.ID_func = Tbl_Funcionarios.ID_func " +
                     "where Tbl_Funcionarios.ID_Munic = " + idMunicAux +
@@ -104,7 +107,8 @@ public partial class Funcionarios_Relatorios_PDF_Inst : System.Web.UI.Page
                 break;
 
             default:
-                stringselect = "select  Tbl_Funcionarios.nome, Tbl_Funcionarios_CargaHor.Carga ,Tbl_Funcionarios_CargaHor.inicio_atividades,Tbl_Funcionarios_CargaHor.Instituicao " +
+                stringselect = "select  Tbl_Funcionarios.nome, Tbl_Funcionarios_CargaHor.Carga ,format(Tbl_Funcionarios_CargaHor.inicio_atividades,'dd/MM/yyyy'), " +
+                    "Tbl_Funcionarios_CargaHor.Instituicao, DATEDIFF(year , Tbl_Funcionarios_CargaHor.inicio_atividades,getDate()) as Tempo Trabalhado " +
                     "from Tbl_Funcionarios_CargaHor  " +
                     "INNER JOIN Tbl_Funcionarios ON Tbl_Funcionarios_CargaHor.ID_func = Tbl_Funcionarios.ID_func " +
                     "where ID_inst = " + RelFiltro +
@@ -114,7 +118,7 @@ public partial class Funcionarios_Relatorios_PDF_Inst : System.Web.UI.Page
 
         OperacaoBanco operacao = new OperacaoBanco();
         System.Data.SqlClient.SqlDataReader dados = operacao.Select(stringselect);
-        string Coluna1, Coluna2, Coluna3, Coluna4;
+        string Coluna1, Coluna2, Coluna3, Coluna4,Coluna5;
 
         while (dados.Read())
         {
@@ -122,11 +126,14 @@ public partial class Funcionarios_Relatorios_PDF_Inst : System.Web.UI.Page
             Coluna2 = Convert.ToString(dados[1]);
             Coluna3 = Convert.ToString(dados[2]);
             Coluna4 = Convert.ToString(dados[3]);
-            
+            Coluna5 = Convert.ToString(dados[4]);
+
+
             cell = new PdfPCell(new Phrase(Coluna1, fontTabela)); table.AddCell(cell);
             cell = new PdfPCell(new Phrase(Coluna2, fontTabela)); table.AddCell(cell);
             cell = new PdfPCell(new Phrase(Coluna3, fontTabela)); table.AddCell(cell);
-            if (colunas == 4) { cell = new PdfPCell(new Phrase(Coluna4, fontTabela)); table.AddCell(cell); }
+            cell = new PdfPCell(new Phrase(Coluna5, fontTabela)); table.AddCell(cell);
+            if (colunas == 5) { cell = new PdfPCell(new Phrase(Coluna4, fontTabela)); table.AddCell(cell); }
 
         }
         ConexaoBancoSQL.fecharConexao();

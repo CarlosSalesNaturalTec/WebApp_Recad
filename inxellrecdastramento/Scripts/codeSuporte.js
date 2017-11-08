@@ -11,5 +11,10 @@ function enviar() {
     var url = "Suporte_Email.aspx?p0=" + v0 + "&p1=" + v1 + "&p2=" + v2 + "&p3=" + v3;
 
     window.location.href = url;
+
+    if (v3 == "") {
+        alert("Digite o comentario");
+    }
    
 }
+

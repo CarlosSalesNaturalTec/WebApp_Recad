@@ -21,11 +21,12 @@ function SalvarRegistro() {
     // Customização - retira ultima virgula da string recem formada
     // strLine = strLine.substring(0, strLine.length - 1);
 
-    /* <!--******* Customização - somente se for utilizar "ID Auxiliar" para o novo registro*******-->
+    /* <!--******* Customização - somente se for utilizar "ID Auxiliar" para o novo registro*******-->*/
     var idPai = document.getElementById('IDAuxHidden').value;
-    strLine = strLine + "param" + i + ":'" + idPai + "',";
-    */
+    strLine = strLine + "param" + i  + ":'" + idPai + "',";
 
+    i = i + 1;
+    
     var foto = document.getElementById('FotoHidden').value;
     strLine = strLine + "param" + i + ":'" + foto + "'";
     

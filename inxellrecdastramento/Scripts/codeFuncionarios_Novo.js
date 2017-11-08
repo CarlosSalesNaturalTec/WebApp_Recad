@@ -265,8 +265,7 @@ function CargaHIncluir() {
     var v2 = document.getElementById("input_Inst"); 
     var v2_2 = v2.options[v2.selectedIndex].text; //instituicao_nome
     var v4 = document.getElementById("input_CargaHor").value; //carga
-    var v5 = document.getElementById("input_admissao").value; //admissao
-
+    
     if (v_inst == '0') {
         alert("Selecione uma instituição");
         return;
@@ -276,7 +275,7 @@ function CargaHIncluir() {
     $.ajax({
         type: "POST",
         url: "WebService.asmx/FuncionariosNewCargaH",
-        data: '{param1: "' + v1 + '", param2: "' + v_inst + '", param3: "' + v2_2 + '", param4: "' + v4 + '", param5: "' + v5 + '"}',
+        data: '{param1: "' + v1 + '", param2: "' + v_inst + '", param3: "' + v2_2 + '", param4: "' + v4 + '"}',
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {
@@ -677,6 +676,11 @@ function classeBt12() {
 function classeBt13() {
     openLink(event, 'grupo13')
     $('#bt13').addClass(' w3-blue');
+}
+
+function classeBt14() {
+    openLink(event, 'grupo14')
+    $('#bt14').addClass(' w3-blue');
 }
 
 
