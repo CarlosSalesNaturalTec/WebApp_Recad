@@ -138,7 +138,7 @@
                                 </select>
                             </div>
                         </div>
-
+                      
                         <div class="form-group">
                             <label for="input_Etnia" class="col-md-2 control-label">Etnia</label>
                             <div class="col-md-4">

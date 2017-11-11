@@ -7,6 +7,6 @@
     <title></title>
 </head>
 <body>
-    <h3>Seu Email foi enviado com sucesso</h3>
+
 </body>
 </html>

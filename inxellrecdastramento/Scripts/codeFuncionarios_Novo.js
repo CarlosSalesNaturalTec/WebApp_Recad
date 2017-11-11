@@ -315,7 +315,6 @@ function CargaHExcluir(r, USerID) {
 function CargaHInsertLinha() {
 
     var col2 = document.getElementById('input_CargaHor').value;
-    var col3 = document.getElementById('input_admissao').value;
     var v2 = document.getElementById("input_Inst");
     var col1= v2.options[v2.selectedIndex].text;
 
@@ -324,17 +323,14 @@ function CargaHInsertLinha() {
     var row = table.insertRow(-1);
     var cell1 = row.insertCell(0);
     var cell2 = row.insertCell(1);
-    var cell3 = row.insertCell(2);
-
+    
     cell1.innerHTML = col1;
     cell2.innerHTML = col2;
-    cell3.innerHTML = col3;
-
+    
     //apaga formulario
     document.getElementById('input_Inst').value = "";
     document.getElementById('input_CargaHor').value = "";
-    document.getElementById('input_admissao').value = "";
-
+    
 }
 
 

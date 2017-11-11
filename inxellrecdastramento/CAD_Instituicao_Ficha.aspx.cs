@@ -102,7 +102,7 @@ public partial class CAD_Instituicao_Ficha : System.Web.UI.Page
         }
         ConexaoBancoSQL.fecharConexao();
 
-        Literal2.Text = str.ToString();
+     
 
     }
 }

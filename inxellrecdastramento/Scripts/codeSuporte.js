@@ -12,7 +12,7 @@ function enviar() {
 
     window.location.href = url;
 
-    if (v3 == "") {
+    if (v3 == " ") {
         alert("Digite o comentario");
     }
    

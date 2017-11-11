@@ -100,7 +100,7 @@ public partial class Instituicoes_Relatorios_PDF_invest : System.Web.UI.Page
                 break;
 
             default:
-                stringselect = "select  Nome, Cidade , Investimento " +
+                stringselect = "select  Nome, Cidade, Investimento " +
                      "from Tbl_Instituicao  " +
                      "where investimento = '" + RelFiltro + "'" +
                      " order by nome";
@@ -112,7 +112,9 @@ public partial class Instituicoes_Relatorios_PDF_invest : System.Web.UI.Page
         string Coluna1, Coluna2, Coluna3; 
 
         while (dados.Read())
+
         {
+
             Coluna1 = Convert.ToString(dados[0]);
             Coluna2 = Convert.ToString(dados[1]);
             Coluna3 = Convert.ToString(dados[2]);
@@ -122,13 +124,15 @@ public partial class Instituicoes_Relatorios_PDF_invest : System.Web.UI.Page
             if (colunas == 3) { cell = new PdfPCell(new Phrase(Coluna3, fontTabela)); table.AddCell(cell); }
 
         }
+
         ConexaoBancoSQL.fecharConexao();
+
     }
 
     public string NomeMunicipio(string IDAux)
     {
         string Munic = "";
-        string stringSelect = "select Nome from Tbl_Municipios where ID_Munic   = " + IDAux;
+        string stringSelect = "select Nome from Tbl_Municipios where ID_Munic = " + IDAux;
         OperacaoBanco Operacao = new OperacaoBanco();
         System.Data.SqlClient.SqlDataReader rcrdset = Operacao.Select(stringSelect);
         while (rcrdset.Read())

@@ -64,12 +64,9 @@ public partial class Funcionarios_Relatorios_PDF_Inst : System.Web.UI.Page
         cell = new PdfPCell(new Phrase("Nome", fontTabelaHeader)); table.AddCell(cell);
         cell = new PdfPCell(new Phrase("Carga Horaria", fontTabelaHeader)); table.AddCell(cell);
         cell = new PdfPCell(new Phrase("Admissão", fontTabelaHeader)); table.AddCell(cell);
-        cell = new PdfPCell(new Phrase("Anos", fontTabelaHeader)); table.AddCell(cell);
+        cell = new PdfPCell(new Phrase("Tempo Trabalhado", fontTabelaHeader)); table.AddCell(cell);
 
-        if (colunas == 5)
-        {
-            cell = new PdfPCell(new Phrase("Instituição", fontTabelaHeader)); table.AddCell(cell);
-        }
+        if (colunas == 5){ cell = new PdfPCell(new Phrase("Instituição", fontTabelaHeader)); table.AddCell(cell);}
         #endregion
 
         #region Corpo da Tabela
@@ -98,8 +95,8 @@ public partial class Funcionarios_Relatorios_PDF_Inst : System.Web.UI.Page
         switch (RelFiltro)
         {
             case "0":
-                stringselect = "select  Tbl_Funcionarios.nome, Tbl_Funcionarios_CargaHor.Carga ,format(Tbl_Funcionarios_CargaHor.inicio_atividades,'dd/MM/yyyy'), " +
-                    "Tbl_Funcionarios_CargaHor.Instituicao , DATEDIFF(year , Tbl_Funcionarios_CargaHor.inicio_atividades , getdate()) as Tempo Trabalhado " +
+                stringselect = "select  Tbl_Funcionarios.nome, Tbl_Funcionarios_CargaHor.Carga ,format(Tbl_Funcionarios.inicio_atividades,'dd/MM/yyyy'), " +
+                    "Tbl_Funcionarios_CargaHor.Instituicao , DATEDIFF(year , Tbl_Funcionarios.inicio_atividades , getdate()) as Anos " +
                     "from Tbl_Funcionarios_CargaHor  " +
                     "INNER JOIN Tbl_Funcionarios ON Tbl_Funcionarios_CargaHor.ID_func = Tbl_Funcionarios.ID_func " +
                     "where Tbl_Funcionarios.ID_Munic = " + idMunicAux +
@@ -107,8 +104,8 @@ public partial class Funcionarios_Relatorios_PDF_Inst : System.Web.UI.Page
                 break;
 
             default:
-                stringselect = "select  Tbl_Funcionarios.nome, Tbl_Funcionarios_CargaHor.Carga ,format(Tbl_Funcionarios_CargaHor.inicio_atividades,'dd/MM/yyyy'), " +
-                    "Tbl_Funcionarios_CargaHor.Instituicao, DATEDIFF(year , Tbl_Funcionarios_CargaHor.inicio_atividades,getDate()) as Tempo Trabalhado " +
+                stringselect = "select  Tbl_Funcionarios.nome, Tbl_Funcionarios_CargaHor.Carga ,format(Tbl_Funcionarios.inicio_atividades,'dd/MM/yyyy'), " +
+                    "Tbl_Funcionarios_CargaHor.Instituicao, DATEDIFF(year , Tbl_Funcionarios.inicio_atividades,getDate()) as Anos " +
                     "from Tbl_Funcionarios_CargaHor  " +
                     "INNER JOIN Tbl_Funcionarios ON Tbl_Funcionarios_CargaHor.ID_func = Tbl_Funcionarios.ID_func " +
                     "where ID_inst = " + RelFiltro +

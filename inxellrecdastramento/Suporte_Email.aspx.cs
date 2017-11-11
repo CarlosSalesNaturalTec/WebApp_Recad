@@ -82,7 +82,7 @@ public partial class Suporte_Email : System.Web.UI.Page
         try
         {
             objSmtp.Send(objEmail);
-            //Response.Write("E-mail enviado com sucesso !");
+            Response.Write("E-mail enviado com sucesso !");
 
         }
         catch (Exception ex)
