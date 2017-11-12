@@ -270,7 +270,6 @@ function CargaHIncluir() {
         alert("Selecione uma instituição");
         return;
     }
-   
 
     $.ajax({
         type: "POST",

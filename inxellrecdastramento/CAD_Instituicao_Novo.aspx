@@ -261,7 +261,6 @@
         <div id="grupo3" class="w3-container grupo w3-animate-left" style="display: none">
             <br />
             <div class="col-md-9 w3-border w3-round w3-light-gray">
-                <!--*******Customização*******-->
                 <h3><i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;Diretoria - Nova Instituição</h3>
             </div>
 
@@ -312,12 +311,12 @@
         <!-- GRUPO 4 -->
         <div id="grupo4" class="w3-container grupo w3-animate-left" style="display: none">
             <br />
-            <div class="col-md-9 w3-border w3-round w3-light-gray">
+            <div class="col-md-12 w3-border w3-round w3-light-gray">
                 <!--*******Customização*******-->
                 <h3><i class="fa fa-check-square-o" aria-hidden="true"></i>&nbsp;Estrutura - Nova Instituição</h3>
             </div>
 
-            <div class="w3-threequarter w3-border w3-light-gray" style="margin-top: 20px">
+            <div class="col-md-12 w3-border w3-light-gray" style="margin-top: 20px">
                 <form class="form-horizontal">
                     <!--*******Customização*******-->
                     <fieldset>
@@ -325,18 +324,18 @@
 
                         <div class="form-group">
                             <label for="input_inep" class="col-md-2 control-label">Código INEP</label>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <input type="text" class="form-control" id="input_inep">
                             </div>
                             <label for="input_UE" class="col-md-2 control-label">Código UE</label>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <input type="text" class="form-control" id="input_UE">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="input_porte" class="col-md-2 control-label">Porte</label>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <select class="form-control" id="input_porte">
                                     <option value="Pequeno">Pequeno</option>
                                     <option value="Médio">Médio</option>
@@ -384,7 +383,7 @@
                                     <option value="Sim">Sim</option>
                                 </select>
                             </div>
-                            <label for="input_Noturno" class="col-md-1 control-label">Noturno</label>
+                            <label for="input_Noturno" class="col-md-2 control-label">Noturno</label>
                             <div class="col-md-2">
                                 <select class="form-control" id="input_Noturno">
                                     <option value="Não">Não</option>
@@ -408,8 +407,8 @@
                                     <option value="Sim">Sim</option>
                                 </select>
                             </div>
-                            <label for="input_lixo" class="col-md-1 control-label">Coleta de Lixo</label>
-                            <div class="col-md-2" style="margin-left:15px";>
+                            <label for="input_lixo" class="col-md-2 control-label">Coleta de Lixo</label>
+                            <div class="col-md-2">
                                 <select class="form-control" id="input_lixo">
                                     <option value="Não">Não</option>
                                     <option value="Sim">Sim</option>
@@ -432,11 +431,11 @@
                                     <option value="Sim">Sim</option>
                                 </select>
                             </div>
-                            <label for="input_Assentamento" class="col-md-1 control-label">Assentamento</label>
-                            <div class="col-md-2" style="margin-left:35px;">
-                                <select class="form-control" id="input_Assentamento">
-                                    <option value="Sim">Sim</option>
+                            <label for="input_Assentamento" class="col-md-2 control-label">Assentamento</label>
+                            <div class="col-md-2">
+                                <select class="form-control" id="input_Assentamento">                                    
                                     <option value="Não">Não</option>
+                                    <option value="Sim">Sim</option>
                                 </select>
                             </div>
                         </div>
@@ -452,7 +451,7 @@
                                 </select>
                             </div>
                             <label for="input_esgoto" class="col-md-2 control-label">Tipo Esgoto</label>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <select class="form-control" id="input_esgoto">
                                     <option value="Rede Pública">Rede Pública</option>
                                     <option value="Rede Privada">Rede Privada</option>
@@ -479,8 +478,8 @@
                                     <option value="Outros">Outros</option>
                                 </select>
                             </div>
-                            <label for="input_uso" class="col-md-1 control-label">Uso Prédio</label>
-                            <div class="col-md-2"  style="margin-left:8px;">
+                            <label for="input_uso" class="col-md-2 control-label">Uso Prédio</label>
+                            <div class="col-md-2">
                                 <select class="form-control" id="input_uso">
                                     <option value="Compartilhado">Compartilhado</option>
                                     <option value="Exclusivo">Exclusivo</option>
@@ -498,8 +497,8 @@
                             <div class="col-md-2">
                                 <input type="number" class="form-control" id="input_salasadm">
                             </div>
-                            <label for="input_salasapoio" class="col-md-1 control-label">Salas Apoio</label>
-                            <div class="col-md-2" style="margin-left:15px;">
+                            <label for="input_salasapoio" class="col-md-2 control-label">Salas Apoio</label>
+                            <div class="col-md-2">
                                 <input type="number" class="form-control" id="input_salasapoio">
                             </div>
                         </div>
@@ -568,7 +567,7 @@
             </div>
 
             <!-- Botões Controle -->
-            <div class="col-md-9 w3-border w3-round w3-light-gray w3-padding" style="margin-top: 10px">
+            <div class="col-md-12 w3-border w3-round w3-light-gray w3-padding" style="margin-top: 10px">
                 <br />
                 <div class="col-md-2"></div>
                 <p>
@@ -643,6 +642,7 @@
         </div>
 
     </div>
+
     <!-- auxiliares -->
     <input id="IDAuxHidden" type="hidden" />
     <input id="IDMunicipio" type="hidden" />

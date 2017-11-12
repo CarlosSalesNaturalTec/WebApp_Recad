@@ -724,18 +724,17 @@
                         </div>
 
                         <div class="form-group">
+
                             <label for="input_matricula" class="col-md-2 control-label">Matrícula</label>
                             <div class="col-md-4">
                                 <input type="text" class="form-control" id="input_matricula">
                             </div>
-                        </div>
 
-                        
-                        <div class="form-group">
-                            <label for="input_admissão" class="col-md-2 control-label">Admissão</label>
+                            <label for="input_admissao" class="col-md-2 control-label">Admissão</label>
                             <div class="col-md-4">
-                                <input type="date" class="form-control" id="input_admissão">
+                                <input type="date" class="form-control" id="input_admissao">
                             </div>
+
                         </div>
 
                     </fieldset>

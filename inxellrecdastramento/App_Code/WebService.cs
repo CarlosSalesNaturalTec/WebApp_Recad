@@ -479,7 +479,7 @@ public class WebService : System.Web.Services.WebService
         string param30, string param31, string param32, string param33, string param34, string param35, string param36, string param37, string param38, string param39,
         string param40, string param41, string param42, string param43, string param44, string param45, string param46, string param47, string param48, string param49,
         string param50, string param51, string param52, string param53, string param54, string param55, string param56, string param57, string param58, string param59,
-        string param60, string param61, string param62, string param63, string param64, string param65)
+        string param60, string param61, string param62, string param63, string param64, string param65, string param66)
     {
         string url;
         string strInsert = "INSERT INTO Tbl_Funcionarios (" +
@@ -535,6 +535,7 @@ public class WebService : System.Web.Services.WebService
             "SindicatoNome," +
             "lotado," +
             "Matricula," +
+            "inicio_atividades," +
 
             "Banco," +
             "Agencia," +
@@ -563,73 +564,74 @@ public class WebService : System.Web.Services.WebService
             ") " +
             "VALUES (" +
 
-            "'" + param0 + "'," +
-            "'" + param1 + "'," +
-            "'" + param2 + "'," +
-            "'" + param3 + "'," +
-            "'" + param4 + "'," +
-            "'" + param5 + "'," +
-            "'" + param6 + "'," +
-            "'" + param7 + "'," +
-            "'" + param8 + "'," +
-            "'" + param9 + "'," +
-            "'" + param10 + "'," +
-            "'" + param11 + "'," +
-            "'" + param12 + "'," +
-            "'" + param13 + "'," +
-            "'" + param14 + "'," +
-            "'" + param15 + "'," +
-            "'" + param16 + "'," +
-            "'" + param17 + "'," +
-            "'" + param18 + "'," +
-            "'" + param19 + "'," +
-            "'" + param20 + "'," +
-            "'" + param21 + "'," +
-            "'" + param22 + "'," +
-            "'" + param23 + "'," +
-            "'" + param24 + "'," +
-            "'" + param25 + "'," +
-            "'" + param26 + "'," +
-            "'" + param27 + "'," +
-            "'" + param28 + "'," +
-            "'" + param29 + "'," +
-            "'" + param30 + "'," +
-            "'" + param31 + "'," +
-            "'" + param32 + "'," +
-            "'" + param33 + "'," +
-            "'" + param34 + "'," +
-            "'" + param35 + "'," +
-            "'" + param36 + "'," +
-            "'" + param37 + "'," +
-            "'" + param38 + "'," +
-            "'" + param39 + "'," +
-            "'" + param40 + "'," +
-            "'" + param41 + "'," +
-            param42 + "," +
-            "'" + param43 + "'," +
-            "'" + param44 + "'," +
-            "'" + param45 + "'," +
-            "'" + param46 + "'," +  
-            "'" + param47 + "'," +
-            "'" + param48 + "'," +
-            "'" + param49 + "'," +
-            "'" + param50 + "'," +
-            "'" + param51 + "'," +
-            "'" + param52 + "'," +
-            "'" + param53 + "'," +
-            "'" + param54 + "'," +
-            "'" + param55 + "'," +
-            "'" + param56 + "'," +
-            "'" + param57 + "'," +
-            "'" + param58 + "'," +
-            "'" + param59 + "'," +
-            "'" + param60 + "'," +
-            "'" + param61 + "'," +
-            "'" + param62 + "'," +
-            "'" + param63 + "'," +
-            param64 + "," +
-            "'" + param65 + "'," +
-            "dateadd(hh,-3,getdate())" +
+            "'" + param0 + "'," +   // Nome
+            "'" + param1 + "'," +   // Sexo
+            "'" + param2 + "'," +   // nascimento
+            "'" + param3 + "'," +   // Pai
+            "'" + param4 + "'," +   // mae
+            "'" + param5 + "'," +   // naturalidade
+            "'" + param6 + "'," +   // nacionalidade
+            "'" + param7 + "'," +   // escolaridade
+            "'" + param8 + "'," +   // estado civil
+            "'" + param9 + "'," +   // etnia
+            "'" + param10 + "'," +  // TipoSanguinio
+            "'" + param11 + "'," +  // Deficiente
+            "'" + param12 + "'," +  // DeficienteTipo
+            "'" + param13 + "'," +  // endereço
+            "'" + param14 + "'," +  // lat
+            "'" + param15 + "'," +  // lng
+            "'" + param16 + "'," +  // numero
+            "'" + param17 + "'," +  // Bairro
+            "'" + param18 + "'," +  // cep
+            "'" + param19 + "'," +  // uf
+            "'" + param20 + "'," +  // Cidade
+            "'" + param21 + "'," +  // Celular1
+            "'" + param22 + "'," +  // Celular2
+            "'" + param23 + "'," +  // TelFixo
+            "'" + param24 + "'," +  // email
+            "'" + param25 + "'," +  // pis
+            "'" + param26 + "'," +  // cpf
+            "'" + param27 + "'," +  // rg
+            "'" + param28 + "'," +  // rgemissor
+            "'" + param29 + "'," +  // rgemissao
+            "'" + param30 + "'," +  // ctps
+            "'" + param31 + "'," +  // ctpsserie
+            "'" + param32 + "'," +  // ctpsemissao
+            "'" + param33 + "'," +  // titulo
+            "'" + param34 + "'," +  // zona
+            "'" + param35 + "'," +  // secao
+            "'" + param36 + "'," +  // cnh
+            "'" + param37 + "'," +  // passaporte
+            "'" + param38 + "'," +  // vincull
+            "'" + param39 + "'," +  // situacao
+            "'" + param40 + "'," +  // funcao
+            "'" + param41 + "'," +  // tabelasal
+            param42 + "," +         // salario bruto
+            "'" + param43 + "'," +  // salarioinvestim
+            "'" + param44 + "'," +  // sindicalizado
+            "'" + param45 + "'," +  // sindicato nome
+            "'" + param46 + "'," +  // lotado
+            "'" + param47 + "'," +  // matricula
+            "'" + param48 + "'," +  // inicio atividades
+            "'" + param49 + "'," +  // banco
+            "'" + param50 + "'," +  // agencia
+            "'" + param51 + "'," +  // conta tipo
+            "'" + param52 + "'," +  // conta numero
+            "'" + param53 + "'," +  // conta operacao
+            "'" + param54 + "'," +  // Alergias
+            "'" + param55 + "'," +  // AlergiasMed
+            "'" + param56 + "'," +  // AcidenteAvisar
+            "'" + param57 + "'," +  // CartaoSUS
+            "'" + param58 + "'," +  // FardaCamisa
+            "'" + param59 + "'," +  // FardaCamiseta
+            "'" + param60 + "'," +  // FardaCalca
+            "'" + param61 + "'," +  // FardaSapato
+            "'" + param62 + "'," +  // FardaBota
+            "'" + param63 + "'," +  // FardaObs
+            "'" + param64 + "'," +  // Cracha
+            param65 + "," +         // ID_Munic
+            "'" + param66 + "'," +  // FotoDataURI
+            "dateadd(hh,-3,getdate())" + // CadastroData
             ")";
 
         OperacaoBanco operacao = new OperacaoBanco();
@@ -676,12 +678,12 @@ public class WebService : System.Web.Services.WebService
         string param30, string param31, string param32, string param33, string param34, string param35, string param36, string param37, string param38, string param39,
         string param40, string param41, string param42, string param43, string param44, string param45, string param46, string param47, string param48, string param49,
         string param50, string param51, string param52, string param53, string param54, string param55, string param56, string param57, string param58, string param59,
-        string param60, string param61, string param62, string param63, string param64, string param65)
+        string param60, string param61, string param62, string param63, string param64, string param65, string param66)
     {
 
-        // param0 a param63 = campos
-        // param64 = foto
-        // param65 = id func
+        // param0 a param64 = campos
+        // param65 = foto
+        // param66 = id func
 
         string url;
 
@@ -739,28 +741,29 @@ public class WebService : System.Web.Services.WebService
             "SindicatoNome= '" + param45 + "', " +
             "lotado = '" + param46 + "', " +
             "Matricula = '" + param47 + "', " +
+            "inicio_atividades = '" + param48 + "', " +
 
-            "Banco= '" + param48 + "', " +
-            "Agencia= '" + param49 + "', " +
-            "ContaTipo= '" + param50 + "', " +
-            "ContaNumero= '" + param51 + "', " +
-            "ContaOperacao= '" + param52 + "', " +
+            "Banco= '" + param49 + "', " +
+            "Agencia= '" + param50 + "', " +
+            "ContaTipo= '" + param51 + "', " +
+            "ContaNumero= '" + param52 + "', " +
+            "ContaOperacao= '" + param53 + "', " +
 
-            "Alergias= '" + param53 + "', " +
-            "AlergiasMed= '" + param54 + "', " +
-            "AcidenteAvisar= '" + param55 + "', " +
-            "CartaoSUS = '" + param56 + "', " +
+            "Alergias= '" + param54 + "', " +
+            "AlergiasMed= '" + param55 + "', " +
+            "AcidenteAvisar= '" + param56 + "', " +
+            "CartaoSUS = '" + param57 + "', " +
 
-            "FardaCamisa= '" + param57 + "', " +
-            "FardaCamiseta= '" + param58 + "', " +
-            "FardaCalca= '" + param59 + "', " +
-            "FardaSapato= '" + param60 + "', " +
-            "FardaBota= '" + param61 + "', " +
-            "FardaObs= '" + param62 + "', " +
-            "Cracha	= '" + param63 + "', " +
+            "FardaCamisa= '" + param58 + "', " +
+            "FardaCamiseta= '" + param59 + "', " +
+            "FardaCalca= '" + param60 + "', " +
+            "FardaSapato= '" + param61 + "', " +
+            "FardaBota= '" + param62 + "', " +
+            "FardaObs= '" + param63 + "', " +
+            "Cracha	= '" + param64 + "', " +
 
-            "FotoDataURI= '" + param64 + "' " +
-            "where ID_func = " + param65);
+            "FotoDataURI= '" + param65 + "' " +
+            "where ID_func = " + param66);
 
         ConexaoBancoSQL.fecharConexao();
 
@@ -879,9 +882,7 @@ public class WebService : System.Web.Services.WebService
     [WebMethod]
     public string FuncionariosNewCargaH(string param1,  string param2, string param3, string param4)
     {
-
         
-
         string url;
         OperacaoBanco operacaoInst2 = new OperacaoBanco();
         Boolean inserirUser = operacaoInst2.Insert("INSERT INTO Tbl_Funcionarios_CargaHor (ID_func ,ID_inst, Instituicao , Carga) " +
@@ -889,7 +890,7 @@ public class WebService : System.Web.Services.WebService
             param1 + ", " +
             param2 + "," +
            "'" + param3 + "'," +
-           "'" + param4 + "'," +
+           "'" + param4 + "'" +
           ")");
 
         ConexaoBancoSQL.fecharConexao();
