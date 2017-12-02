@@ -4,12 +4,14 @@ using System.Text;
 public partial class CAD_Municipio_Ficha : System.Web.UI.Page
 {
     StringBuilder str = new StringBuilder();
-    string idAux;
+    string idAux,idUFAux;
 
     protected void Page_Load(object sender, EventArgs e)
     {
 
         idAux = Request.QueryString["v1"];
+        idUFAux = Session["UserID"].ToString();
+
         PreencheCampos(idAux);
         listaUsuarios(idAux);
 
@@ -26,7 +28,6 @@ public partial class CAD_Municipio_Ficha : System.Web.UI.Page
         ScriptDados = "var x = document.getElementsByClassName('form-control');";
         str.Append(ScriptDados);
 
-        // <!--*******Customização. adicionar todos os campos, separados um em cada linha*******-->
         string stringSelect = "select Nome, UF, Gestor, Telefone, Email, Endereco , Latitude , Longitude , Logomarca " +
             "from Tbl_Municipios  " +
             "where ID_Munic = " + ID;
@@ -35,7 +36,7 @@ public partial class CAD_Municipio_Ficha : System.Web.UI.Page
         System.Data.SqlClient.SqlDataReader rcrdset = operacao.Select(stringSelect);
         while (rcrdset.Read())
         {
-            for (int i = 0; i < 8; i++)  // <!--*******Customização*******--> Atenção para quantidade de campos. Ex: neste formulario tenho 9 campos 
+            for (int i = 0; i < 8; i++)  
             {
                 ScriptDados = "x[" + i + "].value = \"" + Convert.ToString(rcrdset[i]) + "\";";
                 str.Append(ScriptDados);
@@ -47,8 +48,12 @@ public partial class CAD_Municipio_Ficha : System.Web.UI.Page
             ScriptDados = "document.getElementById('FotoHidden').value = \"" + Convert.ToString(rcrdset[8]) + "\";";
             str.Append(ScriptDados);
 
-            //ID do registro
+            //ID do Municipio
             ScriptDados = "document.getElementById('IDAuxHidden').value = \"" + ID + "\";";
+            str.Append(ScriptDados);
+
+            //ID do UF 
+            ScriptDados = "document.getElementById('ID_UF_Hidden').value = \"" + idUFAux + "\";";
             str.Append(ScriptDados);
 
             // mapa

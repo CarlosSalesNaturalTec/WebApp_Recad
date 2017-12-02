@@ -312,6 +312,7 @@
     </div>
     <!-- auxiliares -->
     <input id="IDAuxHidden" type="hidden" />
+    <input id="ID_UF_Hidden" type="hidden" />
     <asp:Literal ID="Literal1" runat="server"></asp:Literal>
 
     <!-- Scripts Diversos  -->

@@ -6,24 +6,21 @@ public partial class CAD_Instituicao_Listagem : System.Web.UI.Page
 {
     StringBuilder str = new StringBuilder();
     int TotaldeRegistros = 0;
-    string IDMun;
+    string IDMun, iduser;
     int nivel;
 
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        string idlevel = Session["UserLevel"].ToString();
-        /* <!--*******Customização somente se for usar um "ID Auxiliar" para o novo registro *******--> */
+        string idlevel = Session["UserLevel"].ToString();        
         string ScriptAux = "<script type=\"text/javascript\">" +
                         "document.getElementById('IdNivelAux').value = \"" + idlevel + "\";" +
                         "</script>";
         Literal_nivel.Text = ScriptAux;
 
-        // somente usuarios nivel 1 tem acesso (gestor de município)
-        nivel = Convert.ToInt16(Session["UserLevel"].ToString());
-        // if (nivel != 1) { Response.Redirect("NaoAutorizado.aspx"); }
+        nivel = Convert.ToInt16(Session["UserLevel"].ToString());        
 
-        string iduser = Session["UserID"].ToString();
+        iduser = Session["UserID"].ToString();
         IDMun = Session["ID_Munic"].ToString();
 
         montaCabecalho();
@@ -63,7 +60,8 @@ public partial class CAD_Instituicao_Listagem : System.Web.UI.Page
             case 0:
                 stringselect = "select ID_inst, nome, cidade, uf, diretor, telefone " +
                         "from Tbl_Instituicao " +
-                        "order by Nome";
+                        "where id_uf = " + iduser +
+                        " order by Nome";
                 break;
 
             default:

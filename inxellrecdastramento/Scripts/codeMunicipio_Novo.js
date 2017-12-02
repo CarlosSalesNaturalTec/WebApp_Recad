@@ -4,10 +4,10 @@ function SalvarRegistro() {
 
     //validações
     if (document.getElementById('input1').value == "") {
-        alert("Informe Nome do Município");   //<!--*******Customização*******-->
+        alert("Informe Nome do Município");   
         openLink(event, 'grupo1')
         $('#bt1').addClass(' w3-blue');
-        document.getElementById("input1").focus();  //<!--*******Customização*******-->
+        document.getElementById("input1").focus();  
         return;
     }
 
@@ -18,15 +18,10 @@ function SalvarRegistro() {
         strLine = strLine + "param" + i + ":'" + x[i].value + "',";
     }
 
-    // Customização - retira ultima virgula da string recem formada
-    // strLine = strLine.substring(0, strLine.length - 1);
-
-    /* <!--******* Customização - somente se for utilizar "ID Auxiliar" para o novo registro*******-->*/
     var idPai = document.getElementById('IDAuxHidden').value;
     strLine = strLine + "param" + i  + ":'" + idPai + "',";
 
     i = i + 1;
-    
     var foto = document.getElementById('FotoHidden').value;
     strLine = strLine + "param" + i + ":'" + foto + "'";
     
@@ -96,8 +91,8 @@ function IncluirUsuario() {
 
     //validações
     if (document.getElementById('input_userNome').value == "") {
-        alert("Informe Nome do Responsável");   //<!--*******Customização*******-->
-        document.getElementById("input_userNome").focus();  //<!--*******Customização*******-->
+        alert("Informe Nome do Responsável");   
+        document.getElementById("input_userNome").focus();  
         return;
     }
 
@@ -105,11 +100,12 @@ function IncluirUsuario() {
     var v2 = document.getElementById("input_userNome").value;
     var v3 = document.getElementById("input_user").value;
     var v4 = document.getElementById("input_pwd").value;
+    var v5 = document.getElementById("ID_UF_Hidden").value;
     
     $.ajax({
         type: "POST",
-        url: "WebService.asmx/MunicipioNewUser",  //<!--*******Customização*******-->
-        data: '{param1: "' + v1 + '", param2: "' + v2 + '", param3: "' + v3 + '", param4: "' + v4 + '"}',
+        url: "WebService.asmx/MunicipioNewUser",  
+        data: '{param1: "' + v1 + '", param2: "' + v2 + '", param3: "' + v3 + '", param4: "' + v4 + '", param5: "' + v5 + '"}',
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {

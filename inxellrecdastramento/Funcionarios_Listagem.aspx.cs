@@ -5,7 +5,7 @@ public partial class Funcionarios_Listagem : System.Web.UI.Page
 {
     StringBuilder str = new StringBuilder();
     int TotaldeRegistros = 0;
-    string IDAux;
+    string IDAux, iduser;
     int nivel;
 
     protected void Page_Load(object sender, EventArgs e)
@@ -17,12 +17,13 @@ public partial class Funcionarios_Listagem : System.Web.UI.Page
                         "</script>";
         Literal_nivel.Text = ScriptAux;
 
-        // somente usuarios nivel 1 tem acesso (gestor de município)
         nivel = Convert.ToInt16(Session["UserLevel"].ToString());
-        //if (nivel != 1) { Response.Redirect("NaoAutorizado.aspx"); }
 
         // ID dO Municipio
         IDAux = Session["ID_Munic"].ToString();
+
+        // ID UF
+        iduser = Session["UserID"].ToString();
 
         montaCabecalho();
         dadosCorpo();
@@ -61,6 +62,7 @@ public partial class Funcionarios_Listagem : System.Web.UI.Page
 
                 stringselect = "select ID_func, nome, Funcao, celular1, email " +
                "from tbl_Funcionarios " +
+               "where id_uf = " + iduser +
                " order by Nome";
 
                 break;

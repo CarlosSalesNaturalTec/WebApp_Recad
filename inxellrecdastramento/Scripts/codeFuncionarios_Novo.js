@@ -22,9 +22,14 @@ function SalvarRegistro() {
     var idInst = document.getElementById('IDInstHidden').value;
     strLine = strLine + "param" + i + ":'" + idInst + "',";
 
-    // foto
-    var foto = document.getElementById('Hidden1').value;
+    //id UF
     i++;
+    var iduf = document.getElementById('ID_UF_Hidden').value;
+    strLine = strLine + "param" + i + ":'" + iduf + "',";
+
+    // foto
+    i++;
+    var foto = document.getElementById('Hidden1').value;
     strLine = strLine + "param" + i + ":'" + foto + "'";
 
     //exibir animações - aguarde...

@@ -646,15 +646,11 @@
     <!-- auxiliares -->
     <input id="IDAuxHidden" type="hidden" />
     <input id="IDMunicipio" type="hidden" />
+    <input id="ID_UF_hidden" type="hidden" />
     <asp:Literal ID="Literal1" runat="server"></asp:Literal>
 
     <!-- Scripts Diversos  -->
     <script type="text/javascript" src="Scripts/codeInstituicao_Novo.js"></script>
-
-    <!--*******Customização somente se for usar mapa*******
-    <script type="text/javascript" src="Scripts/codeInstituicao_Mapa.js"></script> 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDiB9wl9opTaUAh60CpLbHnT3he_-1brJE&libraries=places&callback=initMap" async defer></script>
-    -->
 
 </body>
 </html>

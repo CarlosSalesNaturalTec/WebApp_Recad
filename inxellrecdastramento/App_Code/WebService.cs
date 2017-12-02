@@ -19,7 +19,7 @@ public class WebService : System.Web.Services.WebService
         string Identificador_msg = "0";
 
         // localiza usuario
-        string stringSelect = "select senha,nome,ID_user,ID_Munic, nivel from tbl_usuarios where usuario = '" + user + "'";
+        string stringSelect = "select senha,nome,ID_user,ID_Munic, nivel, id_uf from tbl_usuarios where usuario = '" + user + "'";
         OperacaoBanco Identificador_Operacao = new OperacaoBanco();
         SqlDataReader Identificador_rcrdset = Identificador_Operacao.Select(stringSelect);
         while (Identificador_rcrdset.Read())
@@ -48,7 +48,8 @@ public class WebService : System.Web.Services.WebService
                         "&p2=" + Convert.ToString(Identificador_rcrdset[1]) +
                         "&p3=" + Convert.ToString(Identificador_rcrdset[2]) +
                         "&p4=" + nivel +
-                        "&p5=" + Convert.ToString(Identificador_rcrdset[3]);
+                        "&p5=" + Convert.ToString(Identificador_rcrdset[3]) +
+                        "&p6=" + Convert.ToString(Identificador_rcrdset[5]);
                 }
             }
             else
@@ -73,7 +74,7 @@ public class WebService : System.Web.Services.WebService
         string param36, string param37, string param38, string param39, string param40,
         string param41, string param42, string param43, string param44, string param45,
         string param46, string param47, string param48, string param49, string param50,
-        string param51, string param52, string param53)
+        string param51, string param52, string param53, string param54)
     {
         string url;
 
@@ -91,7 +92,7 @@ public class WebService : System.Web.Services.WebService
             "QuantPredios, QuantSalasAdm, QuantSalasApoio, " +
             "QuantBanheirosMasc,QuantBanheirosFem , " +
             "Salas , AreaJogos ,AreaInfo ,Teatro ,CampoFutebol ,QuadraEsportes ," +
-            "Logomarca, ID_Munic ) " +
+            "Logomarca, ID_Munic, id_uf ) " +
             "VALUES (" +
             "'" + param0 + "'," +
             "'" + param1 + "'," +
@@ -146,12 +147,14 @@ public class WebService : System.Web.Services.WebService
             "'" + param50 + "'," +
             "'" + param51 + "'," +
             "'" + param52 + "'," +
-            "'" + param53 + "')");
+            "'" + param53 + "'," +
+            param54 + 
+            ")");
         ConexaoBancoSQL.fecharConexao();
 
         if (inserir == true)
         {
-            url = "CAD_Instituicao_Listagem.aspx";    // <!--*******Customização*******-->
+            url = "CAD_Instituicao_Listagem.aspx";    
         }
         else
         {
@@ -167,7 +170,7 @@ public class WebService : System.Web.Services.WebService
         string url;
 
         OperacaoBanco operacao3 = new OperacaoBanco();
-        Boolean deletar = operacao3.Delete("delete from Tbl_Instituicao where ID_inst =" + param1);   // <!--*******Customização*******-->
+        Boolean deletar = operacao3.Delete("delete from Tbl_Instituicao where ID_inst =" + param1);   
         ConexaoBancoSQL.fecharConexao();
 
         if (deletar == true)
@@ -418,20 +421,21 @@ public class WebService : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public string MunicipioNewUser(string param1, string param2, string param3, string param4)
+    public string MunicipioNewUser(string param1, string param2, string param3, string param4, string param5)
     {
         string url;
         string nivel = "1";  // 0 = developer master    1 = Gestor Municipal habilitado a cadastrar instituições    2 = Gestor de Instituição, habilitado a cadastrar funcionarios  3 = Funcionarios,  habilitados a usar o site.
 
         OperacaoBanco operacaoInst2 = new OperacaoBanco();
-        Boolean inserirUser = operacaoInst2.Insert("INSERT INTO tbl_usuarios (ID_Munic, Nome , usuario , senha , nivel, DataCadastro ) " +
+        Boolean inserirUser = operacaoInst2.Insert("INSERT INTO tbl_usuarios (ID_Munic, Nome , usuario , senha , nivel, DataCadastro, id_UF ) " +
            "VALUES (" +
            "'" + param1 + "'," +
            "'" + param2 + "'," +
            "'" + param3 + "'," +
            "'" + param4 + "'," +
            nivel + ", " +
-           "dateadd(hh,-3,getdate()) " +
+           "dateadd(hh,-3,getdate()), " +
+           param5 +
            ")"
            );
 
@@ -479,7 +483,7 @@ public class WebService : System.Web.Services.WebService
         string param30, string param31, string param32, string param33, string param34, string param35, string param36, string param37, string param38, string param39,
         string param40, string param41, string param42, string param43, string param44, string param45, string param46, string param47, string param48, string param49,
         string param50, string param51, string param52, string param53, string param54, string param55, string param56, string param57, string param58, string param59,
-        string param60, string param61, string param62, string param63, string param64, string param65, string param66)
+        string param60, string param61, string param62, string param63, string param64, string param65, string param66, string param67)
     {
         string url;
         string strInsert = "INSERT INTO Tbl_Funcionarios (" +
@@ -557,6 +561,7 @@ public class WebService : System.Web.Services.WebService
             "Cracha," +
 
             "ID_Munic," +
+            "ID_UF," +
             "FotoDataURI, " +
 
             "CadastroData " +
@@ -630,7 +635,8 @@ public class WebService : System.Web.Services.WebService
             "'" + param63 + "'," +  // FardaObs
             "'" + param64 + "'," +  // Cracha
             param65 + "," +         // ID_Munic
-            "'" + param66 + "'," +  // FotoDataURI
+            param66 + "," +         // ID_uf
+            "'" + param67 + "'," +  // FotoDataURI
             "dateadd(hh,-3,getdate())" + // CadastroData
             ")";
 

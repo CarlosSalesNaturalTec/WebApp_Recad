@@ -22,7 +22,12 @@ function SalvarRegistro() {
     strLine = strLine + "param" + i + ":'" + foto + "',";
 
     i++;
-    strLine = strLine + "param" + i + ":'" + document.getElementById('IDMunicipio').value + "'";
+    var idAux = document.getElementById('IDMunicipio').value;
+    strLine = strLine + "param" + i + ":'" + idAux + "',";
+
+    i++;
+    var idUFAux = document.getElementById('ID_UF_hidden').value;
+    strLine = strLine + "param" + i + ":'" + idUFAux + "'";
 
     //UI - exibir animações - aguarde...
     UIAguardar();
@@ -46,10 +51,10 @@ function AlterarRegistro() {
 
     //validações
     if (document.getElementById('input1').value == "") {
-        alert("Informe Nome da instituição");   //<!--*******Customização******-->
+        alert("Informe Nome da instituição");   
         openLink(event, 'grupo1')
         $('#bt1').addClass(' w3-blue');
-        document.getElementById("input1").focus();  //<!--*******Customização******-->
+        document.getElementById("input1").focus();  
         return;
     }
 
@@ -66,7 +71,6 @@ function AlterarRegistro() {
     i++;
     var idAux = document.getElementById('IDAuxHidden').value;
     strLine = strLine + "param" + i + ":'" + idAux + "'";
-
 
     //UI - exibir animações - aguarde...
     UIAguardar();
